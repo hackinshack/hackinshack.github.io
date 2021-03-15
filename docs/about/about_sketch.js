@@ -16,9 +16,6 @@ function setup() {
     canv.style('opacity', 0.8);
     canv.style('z-index', '-1');
 
-    gear_img = new MyImage(box_size, gear_img_, 0.2, 0.2);
-    gear_img.resize(0.8 * box_size, 0);
-
     create_section1();
     create_section2();
     create_section3();
