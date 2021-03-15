@@ -15,10 +15,10 @@ let box_size = 450; // this should be scaled to sketch size, as below in draw1 f
 fresh_load = true;
 
 function preload() {
-    hackin_img_ = loadImage('images/hackin.png');
-    shack_img_ = loadImage('images/shack.png');
-    roof_img_ = loadImage('images/roof.png');
-    walls_img_ = loadImage('images/walls.png');
+    hackin_img_ = loadImage('/docs/images/hackin.png');
+    shack_img_ = loadImage('/docs/images/shack.png');
+    roof_img_ = loadImage('/docs/images/roof.png');
+    walls_img_ = loadImage('/docs/images/walls.png');
 }
 
 function setup() {
