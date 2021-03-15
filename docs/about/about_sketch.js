@@ -5,10 +5,6 @@ let aside_text = ['About','Mission','Board','Contact'];
 let gear_img_, gear_img;
 let box_size = 450;
 
-function preload() {
-    gear_img_ = loadImage('../images/gears.gif');
-}
-
 function setup() {
     standard_page = new Standard_Page(sections,function_list);
     standard_page.add_asides_text(aside_text);
