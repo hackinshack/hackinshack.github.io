@@ -167,7 +167,8 @@ class Proto_Menu { // see Main_Menu extension below (silly, I know)
             var html_text = "<img src=\" /docs/images/Logo2019shack.png\" width=\"28\" height=\"21\"/>"
             this.homeButton.html(html_text);
             this.homeButton.mousePressed(function () {
-                window.open("/docs", "_self");
+                window.open("/", "_self");
+//                 window.open("/docs", "_self");
             })
         }
 
