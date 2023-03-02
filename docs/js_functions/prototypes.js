@@ -198,7 +198,7 @@ class Proto_Menu { // see Main_Menu extension below (silly, I know)
 
 class Main_Menu extends Proto_Menu {
     constructor() {
-        super(["about", "projects", "week"], 'menu_up', "", "button", true);
+        super(["about", "projects", "week", "curling"], 'menu_up', "", "button", true);
     }
 }
 
@@ -215,6 +215,7 @@ class Proto_Sketch {
         this.sketch;
         this.add_sketch();
     }
+
 
     add_sketch() {
         var self = this;
@@ -293,6 +294,9 @@ class Globals {
     }
     static get_purple() {
         return color(200,50,250,200);
+    }
+    static get_black() {
+        return color(0,0,0,200);
     }
     
 }
