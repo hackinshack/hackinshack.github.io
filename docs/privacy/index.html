@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
+<link rel="icon" href="/docs/images/iconCurlingOne.png">
+<title>CurlingOne — Privacy Policy</title>
+<style>
+  :root {
+    --ice: #f4f7fa;
+    --frost: #ffffff;
+    --ink: #1b2430;
+    --slate: #5b6b7c;
+    --slate-quiet: #7c8b9a;
+    --granite: #8b3a35;
+    --granite-strong: #6f2d29;
+    --line: #d7e0e8;
+    --note-bg: #fbf3e7;
+    --note-line: #e6cfa8;
+    --note-ink: #6b4d1f;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ice: #121821;
+      --frost: #1a222c;
+      --ink: #e8edf2;
+      --slate: #93a4b5;
+      --slate-quiet: #6f8092;
+      --granite: #d18c86;
+      --granite-strong: #e3a9a3;
+      --line: #2b3743;
+      --note-bg: #2a2313;
+      --note-line: #4d3f1e;
+      --note-ink: #e0c48a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ice: #121821;
+    --frost: #1a222c;
+    --ink: #e8edf2;
+    --slate: #93a4b5;
+    --slate-quiet: #6f8092;
+    --granite: #d18c86;
+    --granite-strong: #e3a9a3;
+    --line: #2b3743;
+    --note-bg: #2a2313;
+    --note-line: #4d3f1e;
+    --note-ink: #e0c48a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ice);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+
+  .page {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  h1, h2, h3 {
+    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  a.home-link {
+    display: inline-block;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--slate);
+    text-decoration: none;
+  }
+
+  a.home-link:hover { color: var(--granite); }
+
+  /* ---------- draft note (delete before publishing) ---------- */
+
+  .draft-note {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: var(--note-bg);
+    border: 1px solid var(--note-line);
+    border-radius: 6px;
+    color: var(--note-ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .draft-note strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--note-ink);
+  }
+
+  .draft-note code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    margin-top: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--granite);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .eyebrow .stone {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--granite);
+    flex: none;
+  }
+
+  h1.title {
+    font-size: 34px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+  }
+
+  .subdate {
+    color: var(--slate);
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lede {
+    margin-top: 20px;
+    font-size: 17px;
+    color: var(--slate);
+    max-width: 60ch;
+  }
+
+  /* ---------- table of contents ---------- */
+
+  nav.toc {
+    margin: 36px 0 48px;
+    padding: 22px 24px;
+    background: var(--frost);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  nav.toc .toc-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-quiet);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  nav.toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+
+  nav.toc a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14.5px;
+    display: flex;
+    gap: 8px;
+  }
+
+  nav.toc a:hover { color: var(--granite); }
+
+  nav.toc a .n {
+    color: var(--slate-quiet);
+    font-variant-numeric: tabular-nums;
+    flex: none;
+  }
+
+  /* ---------- sections ---------- */
+
+  section {
+    margin-top: 44px;
+    scroll-margin-top: 24px;
+  }
+
+  section h2 {
+    font-size: 22px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  section h2 .n {
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--granite);
+    font-variant-numeric: tabular-nums;
+  }
+
+  p.tldr {
+    margin: 16px 0 20px;
+    padding: 14px 18px;
+    background: var(--frost);
+    border-left: 3px solid var(--granite);
+    border-radius: 0 6px 6px 0;
+    font-size: 15.5px;
+  }
+
+  p.tldr strong { color: var(--granite); }
+
+  section h3 {
+    font-size: 16.5px;
+    margin: 26px 0 8px;
+    color: var(--granite-strong);
+  }
+
+  section p, section li {
+    color: var(--ink);
+    font-size: 15.5px;
+  }
+
+  section p { margin: 14px 0; }
+
+  section ul {
+    margin: 10px 0;
+    padding-left: 22px;
+  }
+
+  section li { margin: 6px 0; }
+
+  section li::marker { color: var(--slate-quiet); }
+
+  a { color: var(--granite); }
+  a:hover { color: var(--granite-strong); }
+
+  strong { color: var(--ink); }
+
+  .service-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14.5px;
+  }
+
+  .service-table th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--slate-quiet);
+    font-weight: 600;
+    padding: 0 12px 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .service-table td {
+    padding: 12px 12px 12px 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    color: var(--ink);
+  }
+
+  .service-table tr:last-child td { border-bottom: none; }
+
+  .table-wrap { overflow-x: auto; }
+
+  footer.doc-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--slate-quiet);
+    font-size: 13px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--granite);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 520px) {
+    nav.toc ol { grid-template-columns: 1fr; }
+    h1.title { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="home-link" href="/">&larr; hackinshack.org</a>
+
+  <div class="draft-note">
+    <strong>Draft — not yet live</strong>
+    Building on the <code>multiplayer-launch</code> branch, to go live alongside the new multiplayer release. Before merging to <code>main</code>: fill in the bracketed placeholders (<code>[Studio/Publisher Name]</code>, <code>[Nonprofit Name]</code>, <code>[support email]</code>, <code>[jurisdiction]</code>), set the effective/updated dates, and confirm every section still matches what's shipping. Delete this box once it's ready — it isn't part of the policy itself.
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow"><span class="stone"></span>CurlingOne</div>
+    <h1 class="title">Privacy Policy</h1>
+    <div class="subdate">Effective [Month Day, Year] &nbsp;·&nbsp; Last updated [Month Day, Year]</div>
+    <p class="lede">This policy explains what information CurlingOne collects when you play, why we collect it, and the choices you have.</p>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#who-we-are"><span class="n">1</span>Who we are</a></li>
+      <li><a href="#information-we-collect"><span class="n">2</span>Information we collect</a></li>
+      <li><a href="#how-we-use-it"><span class="n">3</span>How we use your information</a></li>
+      <li><a href="#third-party-services"><span class="n">4</span>Third-party services</a></li>
+      <li><a href="#sharing"><span class="n">5</span>Data sharing and disclosure</a></li>
+      <li><a href="#retention"><span class="n">6</span>Data retention</a></li>
+      <li><a href="#children"><span class="n">7</span>Children's privacy</a></li>
+      <li><a href="#your-rights"><span class="n">8</span>Your rights and choices</a></li>
+      <li><a href="#security"><span class="n">9</span>Security</a></li>
+      <li><a href="#changes"><span class="n">10</span>Changes to this policy</a></li>
+      <li><a href="#contact"><span class="n">11</span>Contact us</a></li>
+    </ol>
+  </nav>
+
+  <section id="who-we-are">
+    <h2><span class="n">01</span>Who we are</h2>
+    <p>CurlingOne is a multiplayer virtual reality curling game developed by <strong>[Studio/Publisher Name]</strong> for Meta Quest headsets. Net proceeds from CurlingOne support <strong>[Nonprofit Name]</strong>. This policy covers the information CurlingOne itself collects — it doesn't cover Meta's own platform-level data practices, which are governed by Meta's own privacy policy for the Horizon OS and Quest Store.</p>
+  </section>
+
+  <section id="information-we-collect">
+    <h2><span class="n">02</span>Information we collect</h2>
+    <p class="tldr"><strong>In short:</strong> we don't sell your data, and we don't collect more than we need to run the game. Nothing here is used for advertising, and we never see your payment details.</p>
+    <p>CurlingOne is built to need as little personal information as possible. Here's specifically what passes through the game:</p>
+
+    <h3>Account and identity information</h3>
+    <ul>
+      <li>An anonymous player ID, issued automatically when you first launch the game (via Unity Authentication) — this isn't tied to your name or email, it's a random identifier used to keep your session and settings consistent.</li>
+      <li>Your Meta account association, used to verify you're entitled to play the game you purchased (a standard Quest Store requirement) and, where applicable, your Meta display name shown to other players.</li>
+      <li>The in-game screen name and team/handle colors you choose.</li>
+    </ul>
+
+    <h3>Multiplayer and networking data</h3>
+    <p>CurlingOne doesn't use public or automated matchmaking — there's no central lobby that pairs you with strangers. To play Multiplayer, you and the people you want to play with agree on a shared room name beforehand and meet there, so you're only ever matched with people you've already arranged to play with.</p>
+    <ul>
+      <li>Room or lobby names you create or join, and your connection's IP address, which is used transiently to route multiplayer traffic through our networking provider (Unity Relay) — this is standard for any real-time multiplayer connection and isn't stored by us beyond the session.</li>
+      <li>Match data needed to run a game: team assignments, positions, scores, and shot outcomes for the current session.</li>
+    </ul>
+
+    <h3>Voice chat</h3>
+    <p>If you play Multiplayer, CurlingOne uses Vivox (a Unity-provided voice chat service) to transmit live voice audio between players in the same match, for the duration of that match. We do not record, store, or listen to voice chat ourselves. Voice chat only activates for Multiplayer sessions with another player present — it is not used in Single Player.</p>
+
+    <h3>Gameplay data</h3>
+    <p>Basic gameplay information — such as game mode, format (Standard/Doubles), and in-app preferences like tutorial hints — is used to run the current session and may be saved locally on your headset so your settings persist between plays.</p>
+
+    <h3>Purchases</h3>
+    <p>CurlingOne is sold through the Meta Quest Store. Meta handles the purchase transaction, including any payment information — we never receive or store your payment details.</p>
+  </section>
+
+  <section id="how-we-use-it">
+    <h2><span class="n">03</span>How we use your information</h2>
+    <ul>
+      <li>To connect you with other players and run multiplayer matches, including voice chat.</li>
+      <li>To save your in-game settings and preferences between sessions.</li>
+      <li>To operate core gameplay features — scoring, matchmaking, team/position assignment.</li>
+      <li>To diagnose and fix bugs or crashes, using only the technical information necessary to do so.</li>
+      <li>To meet Meta Quest Store requirements, such as verifying game ownership.</li>
+    </ul>
+    <p>We do not use your information for advertising, and we do not sell your information to anyone.</p>
+  </section>
+
+  <section id="third-party-services">
+    <h2><span class="n">04</span>Third-party services</h2>
+    <p>CurlingOne is built on Unity Gaming Services and the Meta Quest platform. These providers process certain data on our behalf to make multiplayer and voice chat work, under their own privacy and security terms:</p>
+    <div class="table-wrap">
+      <table class="service-table">
+        <thead>
+          <tr><th>Service</th><th>Provider</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Authentication</td><td>Unity Gaming Services</td><td>Anonymous player identification</td></tr>
+          <tr><td>Relay &amp; Lobby</td><td>Unity Gaming Services</td><td>Multiplayer matchmaking and networking</td></tr>
+          <tr><td>Vivox</td><td>Unity Gaming Services</td><td>In-game voice chat</td></tr>
+          <tr><td>Platform SDK</td><td>Meta</td><td>Account entitlement, avatars, Quest Store integration</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>We encourage you to review <a href="https://unity.com/legal/privacy-policy">Unity's privacy policy</a> and <a href="https://www.meta.com/legal/privacy-policy/">Meta's privacy policy</a> for details on how each of them separately handles data.</p>
+  </section>
+
+  <section id="sharing">
+    <h2><span class="n">05</span>Data sharing and disclosure</h2>
+    <p>We don't sell your information. We share it only in the following circumstances:</p>
+    <ul>
+      <li>With the service providers listed above, strictly to operate multiplayer, voice chat, and platform integration.</li>
+      <li>With other players in your match, limited to what's needed to play together — screen name, team, and live voice audio during that session.</li>
+      <li>If required by law, or to protect the safety and integrity of our players and service.</li>
+    </ul>
+  </section>
+
+  <section id="retention">
+    <h2><span class="n">06</span>Data retention</h2>
+    <p>Match and networking data exists only for the duration of a session and is not retained afterward. Locally saved preferences remain on your headset until you uninstall the game or clear its data. If we introduce persistent cloud-saved statistics in the future, this policy will be updated to describe what's retained and for how long.</p>
+  </section>
+
+  <section id="children">
+    <h2><span class="n">07</span>Children's privacy</h2>
+    <p>CurlingOne is not directed at children under 13, and we do not knowingly collect personal information from children under 13. Meta Quest devices and the Quest Store have their own age requirements and parental controls, which apply independently of this policy.</p>
+  </section>
+
+  <section id="your-rights">
+    <h2><span class="n">08</span>Your rights and choices</h2>
+    <ul>
+      <li><strong>Voice chat.</strong> You can play Single Player against the AI to avoid voice chat entirely.</li>
+      <li><strong>Uninstalling.</strong> Removing the game from your headset deletes any locally stored preferences.</li>
+    </ul>
+  </section>
+
+  <section id="security">
+    <h2><span class="n">09</span>Security</h2>
+    <p>We rely on the security practices of Unity Gaming Services and Meta's platform for the infrastructure CurlingOne runs on, and we only request the minimum information needed to operate the game. No online service is completely immune to risk, but we don't collect the kind of sensitive personal data that would make CurlingOne a meaningful target on its own.</p>
+  </section>
+
+  <section id="changes">
+    <h2><span class="n">10</span>Changes to this policy</h2>
+    <p>If we change what information we collect or how we use it, we'll update the "last updated" date at the top of this page. Material changes will be called out clearly rather than folded in silently.</p>
+  </section>
+
+  <section id="contact">
+    <h2><span class="n">11</span>Contact us</h2>
+    <p>Questions about this policy can be sent to <strong>[support email]</strong>.</p>
+  </section>
+
+  <footer class="doc-footer">
+    CurlingOne — [Studio/Publisher Name]. This policy is governed by the laws of [jurisdiction].
+  </footer>
+
+</div>
+</body>
+</html>
