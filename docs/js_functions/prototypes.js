@@ -140,11 +140,13 @@ class Proto_Page {
 // -----------------------------------------------------------------
 
 class Proto_Menu { // see Main_Menu extension below (silly, I know)
-    constructor(labels, parentID, parentDir, btn_class, addHome) {
+    constructor(labels, parentID, parentDir, btn_class, addHome, paths) {
 
         this.labels = labels;
+        this.paths = paths || labels;
         this.parent_id = parentID;
         this.buttons = [];
+        this.button_paths = [];
         this.home_button;
         this.add_home = addHome;
         this.parent_dir = parentDir;
@@ -181,15 +183,15 @@ class Proto_Menu { // see Main_Menu extension below (silly, I know)
             this.buttons[j].style('float', 'right');
             this.buttons[j].class(this.button_class);
             this.buttons[j].mousePressed(this.select.bind(this, j));
+            this.button_paths[j] = this.paths[i];
             j++;
         }
     }
 
     select(button_index) {
-        var bclicked = this.buttons[button_index];
         var mid_text = this.parent_dir + "/";
         if (this.parent_dir == "") mid_text = "";
-        var new_page = "/docs/" + mid_text + bclicked.elt.outerText;
+        var new_page = "/docs/" + mid_text + this.button_paths[button_index];
         window.open(new_page, "_self");
     }
 }
@@ -198,7 +200,8 @@ class Proto_Menu { // see Main_Menu extension below (silly, I know)
 
 class Main_Menu extends Proto_Menu {
     constructor() {
-        super(["about", "projects", "week", "curling"], 'menu_up', "", "button", true);
+        super(["about", "CurlingOne", "CurlingSpectator"], 'menu_up', "", "button", true,
+              ["about", "curling", "privacy-spectator"]);
     }
 }
 
