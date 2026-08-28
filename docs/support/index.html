@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
+<link rel="icon" href="/docs/images/iconCurlingOne.png">
+<title>CurlingOne — Support</title>
+<style>
+  :root {
+    --ice: #f4f7fa;
+    --frost: #ffffff;
+    --ink: #1b2430;
+    --slate: #5b6b7c;
+    --slate-quiet: #7c8b9a;
+    --granite: #8b3a35;
+    --granite-strong: #6f2d29;
+    --line: #d7e0e8;
+    --note-bg: #fbf3e7;
+    --note-line: #e6cfa8;
+    --note-ink: #6b4d1f;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ice: #121821;
+      --frost: #1a222c;
+      --ink: #e8edf2;
+      --slate: #93a4b5;
+      --slate-quiet: #6f8092;
+      --granite: #d18c86;
+      --granite-strong: #e3a9a3;
+      --line: #2b3743;
+      --note-bg: #2a2313;
+      --note-line: #4d3f1e;
+      --note-ink: #e0c48a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ice: #121821;
+    --frost: #1a222c;
+    --ink: #e8edf2;
+    --slate: #93a4b5;
+    --slate-quiet: #6f8092;
+    --granite: #d18c86;
+    --granite-strong: #e3a9a3;
+    --line: #2b3743;
+    --note-bg: #2a2313;
+    --note-line: #4d3f1e;
+    --note-ink: #e0c48a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ice);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+
+  .page { max-width: 700px; margin: 0 auto; }
+
+  h1, h2, h3 {
+    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  a.home-link {
+    display: inline-block;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--slate);
+    text-decoration: none;
+  }
+  a.home-link:hover { color: var(--granite); }
+
+  a { color: var(--granite); }
+  a:hover { color: var(--granite-strong); }
+
+  /* ---------- draft note ---------- */
+
+  .draft-note {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: var(--note-bg);
+    border: 1px solid var(--note-line);
+    border-radius: 6px;
+    color: var(--note-ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .draft-note strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--note-ink);
+  }
+  .draft-note code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    margin-top: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--granite);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .eyebrow .stone {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--granite);
+    flex: none;
+  }
+  h1.title { font-size: 34px; line-height: 1.15; margin: 0 0 10px; }
+  .lede { margin-top: 20px; font-size: 17px; color: var(--slate); max-width: 60ch; }
+
+  /* ---------- contact card ---------- */
+
+  .contact-card {
+    margin: 32px 0 8px;
+    padding: 24px 26px;
+    background: var(--frost);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .contact-card .label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-quiet);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .contact-card .email {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .contact-card .email a { text-decoration: none; }
+  .contact-card .email a:hover { text-decoration: underline; }
+
+  /* ---------- sections ---------- */
+
+  section {
+    margin-top: 44px;
+  }
+  section h2 {
+    font-size: 20px;
+    margin: 0 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  section p { font-size: 15.5px; margin: 14px 0; }
+  section ul { margin: 10px 0; padding-left: 22px; }
+  section li { margin: 6px 0; font-size: 15.5px; }
+  section li::marker { color: var(--slate-quiet); }
+
+  strong { color: var(--ink); }
+
+  footer.doc-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--slate-quiet);
+    font-size: 13px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--granite);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="home-link" href="/">&larr; hackinshack.org</a>
+
+  <div class="draft-note">
+    <strong>Draft — not yet live</strong>
+    Building on the <code>multiplayer-launch</code> branch. Fill in <code>[support email]</code> and the <code>[Meta Quest Support link]</code> before merging to <code>main</code>. Delete this box once it's ready.
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow"><span class="stone"></span>CurlingOne</div>
+    <h1 class="title">Support</h1>
+    <p class="lede">Running into a bug, have a question, or just want to tell us something? Here's how to reach us.</p>
+  </header>
+
+  <div class="contact-card">
+    <div class="label">Email us</div>
+    <div class="email"><a href="mailto:[support email]">[support email]</a></div>
+  </div>
+
+  <section>
+    <h2>Before you reach out</h2>
+    <p>Quick answers to common questions live in the <a href="/docs/faq/">FAQ</a>, and if you're stuck on controls or rules, <a href="/docs/how-to-play/">How to Play</a> covers the whole game step by step. If neither answers your question, email us — we read every message.</p>
+  </section>
+
+  <section>
+    <h2>Reporting a bug</h2>
+    <p>The more detail you can give us, the faster we can track down what happened. If you're able, include:</p>
+    <ul>
+      <li>What you were doing when it happened (delivering a stone, sweeping, joining a room, etc.)</li>
+      <li>Whether you were in Single Player or Multiplayer, and Standard or Doubles</li>
+      <li>If it was a multiplayer match, roughly how many players were connected</li>
+      <li>Anything on screen at the time — a screenshot or short recording helps a lot</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Purchases &amp; billing</h2>
+    <p>CurlingOne is sold through the Meta Quest Store, and Meta handles all payment processing — we don't have access to your payment details and can't issue refunds directly. For purchase issues, refunds, or billing questions, contact <strong>[Meta Quest Support link]</strong>.</p>
+  </section>
+
+  <section>
+    <h2>Feedback &amp; ideas</h2>
+    <p>Suggestions, feature requests, and general feedback are always welcome at the email above. We can't promise every idea makes it in, but we do read all of it.</p>
+  </section>
+
+  <footer class="doc-footer">
+    CurlingOne
+  </footer>
+
+</div>
+</body>
+</html>

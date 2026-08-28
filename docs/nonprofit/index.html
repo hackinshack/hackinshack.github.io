@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
+<link rel="icon" href="/docs/images/iconCurlingOne.png">
+<title>CurlingOne — Giving Back</title>
+<style>
+  :root {
+    --ice: #f4f7fa;
+    --frost: #ffffff;
+    --ink: #1b2430;
+    --slate: #5b6b7c;
+    --slate-quiet: #7c8b9a;
+    --granite: #8b3a35;
+    --granite-strong: #6f2d29;
+    --line: #d7e0e8;
+    --note-bg: #fbf3e7;
+    --note-line: #e6cfa8;
+    --note-ink: #6b4d1f;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ice: #121821;
+      --frost: #1a222c;
+      --ink: #e8edf2;
+      --slate: #93a4b5;
+      --slate-quiet: #6f8092;
+      --granite: #d18c86;
+      --granite-strong: #e3a9a3;
+      --line: #2b3743;
+      --note-bg: #2a2313;
+      --note-line: #4d3f1e;
+      --note-ink: #e0c48a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ice: #121821;
+    --frost: #1a222c;
+    --ink: #e8edf2;
+    --slate: #93a4b5;
+    --slate-quiet: #6f8092;
+    --granite: #d18c86;
+    --granite-strong: #e3a9a3;
+    --line: #2b3743;
+    --note-bg: #2a2313;
+    --note-line: #4d3f1e;
+    --note-ink: #e0c48a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ice);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+
+  .page { max-width: 700px; margin: 0 auto; }
+
+  h1, h2, h3 {
+    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  a.home-link {
+    display: inline-block;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--slate);
+    text-decoration: none;
+  }
+  a.home-link:hover { color: var(--granite); }
+
+  a { color: var(--granite); }
+  a:hover { color: var(--granite-strong); }
+
+  /* ---------- draft note ---------- */
+
+  .draft-note {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: var(--note-bg);
+    border: 1px solid var(--note-line);
+    border-radius: 6px;
+    color: var(--note-ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .draft-note strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--note-ink);
+  }
+  .draft-note code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    margin-top: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--granite);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .eyebrow .stone {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--granite);
+    flex: none;
+  }
+  h1.title { font-size: 34px; line-height: 1.15; margin: 0 0 10px; }
+  .lede { margin-top: 20px; font-size: 17px; color: var(--slate); max-width: 60ch; }
+
+  /* ---------- sections ---------- */
+
+  section { margin-top: 44px; }
+  section h2 {
+    font-size: 20px;
+    margin: 0 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  section p { font-size: 15.5px; margin: 14px 0; }
+
+  strong { color: var(--ink); }
+
+  /* ---------- placeholder block for the org itself ---------- */
+
+  .org-slot {
+    margin: 20px 0;
+    padding: 22px 24px;
+    background: var(--frost);
+    border: 1px dashed var(--note-line);
+    border-radius: 8px;
+    color: var(--slate);
+    font-size: 14.5px;
+  }
+  .org-slot strong { color: var(--ink); }
+
+  footer.doc-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--slate-quiet);
+    font-size: 13px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--granite);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="home-link" href="/">&larr; hackinshack.org</a>
+
+  <div class="draft-note">
+    <strong>Draft — light on purpose</strong>
+    Placeholder page until the nonprofit details are finalized. Needs: nonprofit name/mission, how proceeds are calculated and how often they're contributed, and any relevant links (their site, tax status, etc.). Replace the dashed box below once that's settled — everything else on the page should already be accurate.
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow"><span class="stone"></span>CurlingOne</div>
+    <h1 class="title">Giving Back</h1>
+    <p class="lede">Net proceeds from CurlingOne support a nonprofit — here's the idea behind that, and who it supports.</p>
+  </header>
+
+  <section>
+    <h2>Why</h2>
+    <p>CurlingOne exists to get people curious about curling — including plenty of players who've never seen a match, let alone thrown a stone. We've tried to keep that goal in view everywhere: how the game teaches you to play, how it's priced, and how it makes money.</p>
+    <p>Rather than treating the game as pure profit, net proceeds go toward a nonprofit cause. It's a way to make a niche sport's biggest, most accessible showcase also do some good beyond the game itself.</p>
+  </section>
+
+  <section>
+    <h2>Who</h2>
+    <div class="org-slot">
+      <strong>[Nonprofit name and mission — coming soon]</strong><br>
+      This section will describe the organization CurlingOne supports, why we chose them, and how to learn more directly from them.
+    </div>
+  </section>
+
+  <footer class="doc-footer">
+    CurlingOne
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
+<link rel="icon" href="/docs/images/iconCurlingOne.png">
+<title>CurlingOne — FAQ</title>
+<style>
+  :root {
+    --ice: #f4f7fa;
+    --frost: #ffffff;
+    --ink: #1b2430;
+    --slate: #5b6b7c;
+    --slate-quiet: #7c8b9a;
+    --granite: #8b3a35;
+    --granite-strong: #6f2d29;
+    --line: #d7e0e8;
+    --note-bg: #fbf3e7;
+    --note-line: #e6cfa8;
+    --note-ink: #6b4d1f;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ice: #121821;
+      --frost: #1a222c;
+      --ink: #e8edf2;
+      --slate: #93a4b5;
+      --slate-quiet: #6f8092;
+      --granite: #d18c86;
+      --granite-strong: #e3a9a3;
+      --line: #2b3743;
+      --note-bg: #2a2313;
+      --note-line: #4d3f1e;
+      --note-ink: #e0c48a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ice: #121821;
+    --frost: #1a222c;
+    --ink: #e8edf2;
+    --slate: #93a4b5;
+    --slate-quiet: #6f8092;
+    --granite: #d18c86;
+    --granite-strong: #e3a9a3;
+    --line: #2b3743;
+    --note-bg: #2a2313;
+    --note-line: #4d3f1e;
+    --note-ink: #e0c48a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ice);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+
+  .page { max-width: 760px; margin: 0 auto; }
+
+  h1, h2, h3 {
+    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  a.home-link {
+    display: inline-block;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--slate);
+    text-decoration: none;
+  }
+  a.home-link:hover { color: var(--granite); }
+
+  a { color: var(--granite); }
+  a:hover { color: var(--granite-strong); }
+
+  /* ---------- draft note ---------- */
+
+  .draft-note {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: var(--note-bg);
+    border: 1px solid var(--note-line);
+    border-radius: 6px;
+    color: var(--note-ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .draft-note strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--note-ink);
+  }
+  .draft-note code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    margin-top: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--granite);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .eyebrow .stone {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--granite);
+    flex: none;
+  }
+  h1.title { font-size: 34px; line-height: 1.15; margin: 0 0 10px; }
+  .lede { margin-top: 20px; font-size: 17px; color: var(--slate); max-width: 60ch; }
+
+  /* ---------- quick nav ---------- */
+
+  nav.toc {
+    margin: 32px 0 48px;
+    padding: 22px 24px;
+    background: var(--frost);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  nav.toc .toc-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate-quiet);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  nav.toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+  nav.toc a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14.5px;
+    display: flex;
+    gap: 8px;
+  }
+  nav.toc a:hover { color: var(--granite); }
+  nav.toc a .n {
+    color: var(--slate-quiet);
+    font-variant-numeric: tabular-nums;
+    flex: none;
+  }
+
+  /* ---------- sections ---------- */
+
+  section {
+    margin-top: 44px;
+    scroll-margin-top: 24px;
+  }
+  section h2 {
+    font-size: 22px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  section h2 .n {
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--granite);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .qa { margin-top: 26px; }
+  .qa h3 {
+    font-size: 16.5px;
+    margin: 0 0 8px;
+    color: var(--granite-strong);
+  }
+  .qa p { margin: 0; font-size: 15.5px; color: var(--ink); }
+  .qa p + p { margin-top: 10px; }
+
+  footer.doc-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--slate-quiet);
+    font-size: 13px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--granite);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 520px) {
+    nav.toc ol { grid-template-columns: 1fr; }
+    h1.title { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="home-link" href="/">&larr; hackinshack.org</a>
+
+  <div class="draft-note">
+    <strong>Draft — not yet live</strong>
+    Building on the <code>multiplayer-launch</code> branch. Before merging to <code>main</code>: fill in <code>[current price]</code>, <code>[Nonprofit Name]</code>, and <code>[support email]</code> once those are finalized — price is still being decided via Meta's Price A/B Testing tool, so don't lock in a number here until that settles. Delete this box once it's ready.
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow"><span class="stone"></span>CurlingOne</div>
+    <h1 class="title">Frequently Asked Questions</h1>
+    <p class="lede">Answers to the questions we hear most about the multiplayer relaunch, pricing, and how the game actually works.</p>
+  </header>
+
+  <nav class="toc" aria-label="Quick navigation">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#getting-started"><span class="n">1</span>Getting started</a></li>
+      <li><a href="#existing-owners"><span class="n">2</span>Existing owners &amp; pricing</a></li>
+      <li><a href="#multiplayer"><span class="n">3</span>Multiplayer &amp; voice chat</a></li>
+      <li><a href="#visuals"><span class="n">4</span>The new update</a></li>
+      <li><a href="#privacy"><span class="n">5</span>Privacy &amp; data</a></li>
+      <li><a href="#nonprofit"><span class="n">6</span>The nonprofit</a></li>
+    </ol>
+  </nav>
+
+  <section id="getting-started">
+    <h2><span class="n">01</span>Getting started</h2>
+    <div class="qa">
+      <h3>What do I need to play?</h3>
+      <p>A Meta Quest headset and a Meta account. Multiplayer and voice chat need an internet connection; Single Player against the AI can be played offline.</p>
+    </div>
+    <div class="qa">
+      <h3>Do I need to know how curling works?</h3>
+      <p>No. CurlingOne is built to be approachable for people who have never seen a curling match — see <a href="/docs/how-to-play/">How to Play</a> for a full walkthrough of controls and rules.</p>
+    </div>
+    <div class="qa">
+      <h3>Can I play by myself?</h3>
+      <p>Yes. Single Player puts you up against a full AI team, with five skill levels from Very Low to Very High.</p>
+    </div>
+  </section>
+
+  <section id="existing-owners">
+    <h2><span class="n">02</span>Existing owners &amp; pricing</h2>
+    <div class="qa">
+      <h3>I already own CurlingOne — do I have to pay again for multiplayer?</h3>
+      <p>No. The multiplayer relaunch ships as a free update to your existing CurlingOne purchase, the same way any other Quest Store app update works.</p>
+    </div>
+    <div class="qa">
+      <h3>What does CurlingOne cost for new players?</h3>
+      <p>New purchases are <strong>[current price]</strong> — check the <strong>[Quest Store listing]</strong> for the current price, since we adjust it periodically. Net proceeds go to <strong>[Nonprofit Name]</strong> — see <a href="#nonprofit">below</a>.</p>
+    </div>
+    <div class="qa">
+      <h3>Is there a free trial?</h3>
+      <p>Yes. CurlingOne supports Meta's Try Before You Buy, so you can try the full game for a limited time before deciding to purchase.</p>
+    </div>
+  </section>
+
+  <section id="multiplayer">
+    <h2><span class="n">03</span>Multiplayer &amp; voice chat</h2>
+    <div class="qa">
+      <h3>How do I play with friends?</h3>
+      <p>Agree on a room name with the people you want to play with, then one person creates the room and everyone else joins using that same name. There's no public matchmaking or lobby list — you'll only ever be matched with people you've invited.</p>
+    </div>
+    <div class="qa">
+      <h3>Will I get matched with random strangers?</h3>
+      <p>No. Since rooms are only found by knowing the exact room name, you control who ends up in your match.</p>
+    </div>
+    <div class="qa">
+      <h3>Is voice chat required?</h3>
+      <p>Voice chat turns on automatically once you're in a multiplayer match with another player present. There's currently no in-app mute control — if you'd rather avoid voice chat entirely, play Single Player instead.</p>
+    </div>
+    <div class="qa">
+      <h3>What if we don't have enough people for a full team?</h3>
+      <p>Any open slot on either team can be filled with an AI player, so you can play Standard (4v4) or Doubles (2v2) without needing a full roster of humans.</p>
+    </div>
+  </section>
+
+  <section id="visuals">
+    <h2><span class="n">04</span>The new update</h2>
+    <div class="qa">
+      <h3>Do I have to use the new arena and visuals?</h3>
+      <p>No. An environment picker lets you switch between the original scene and the new realistic arena, so if you prefer the look of the game you already know, you can keep it.</p>
+    </div>
+    <div class="qa">
+      <h3>Does the environment choice affect gameplay?</h3>
+      <p>No — it's purely visual. Ice physics, stones, and scoring work the same regardless of which environment you pick.</p>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <h2><span class="n">05</span>Privacy &amp; data</h2>
+    <div class="qa">
+      <h3>What information does CurlingOne collect?</h3>
+      <p>An anonymous player ID, your Meta account association, room names, and match data needed to run a session — nothing is used for advertising, and we never see your payment details. Full details are in our <a href="/docs/privacy/">Privacy Policy</a>.</p>
+    </div>
+  </section>
+
+  <section id="nonprofit">
+    <h2><span class="n">06</span>The nonprofit</h2>
+    <div class="qa">
+      <h3>Where do the proceeds go?</h3>
+      <p>Net proceeds from CurlingOne support <strong>[Nonprofit Name]</strong>. We've priced and structured the game to keep it accessible to newcomers while still supporting that mission.</p>
+    </div>
+  </section>
+
+  <footer class="doc-footer">
+    Didn't find your answer? Reach out at <strong>[support email]</strong>.
+  </footer>
+
+</div>
+</body>
+</html>

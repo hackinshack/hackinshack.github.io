@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
+<link rel="icon" href="/docs/images/iconCurlingOne.png">
+<title>Image Test</title>
+<style>
+  :root {
+    --ice: #f4f7fa;
+    --frost: #ffffff;
+    --ink: #1b2430;
+    --slate: #5b6b7c;
+    --slate-quiet: #7c8b9a;
+    --granite: #8b3a35;
+    --granite-strong: #6f2d29;
+    --line: #d7e0e8;
+    --note-bg: #fbf3e7;
+    --note-line: #e6cfa8;
+    --note-ink: #6b4d1f;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ice: #121821;
+      --frost: #1a222c;
+      --ink: #e8edf2;
+      --slate: #93a4b5;
+      --slate-quiet: #6f8092;
+      --granite: #d18c86;
+      --granite-strong: #e3a9a3;
+      --line: #2b3743;
+      --note-bg: #2a2313;
+      --note-line: #4d3f1e;
+      --note-ink: #e0c48a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ice: #121821;
+    --frost: #1a222c;
+    --ink: #e8edf2;
+    --slate: #93a4b5;
+    --slate-quiet: #6f8092;
+    --granite: #d18c86;
+    --granite-strong: #e3a9a3;
+    --line: #2b3743;
+    --note-bg: #2a2313;
+    --note-line: #4d3f1e;
+    --note-ink: #e0c48a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ice);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+
+  .page { max-width: 700px; margin: 0 auto; }
+
+  h1, h2 {
+    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  a.home-link {
+    display: inline-block;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--slate);
+    text-decoration: none;
+  }
+  a.home-link:hover { color: var(--granite); }
+
+  .draft-note {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: var(--note-bg);
+    border: 1px solid var(--note-line);
+    border-radius: 6px;
+    color: var(--note-ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .draft-note strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--note-ink);
+  }
+  .draft-note code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  header.masthead {
+    margin-top: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--granite);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .eyebrow .stone {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--granite);
+    flex: none;
+  }
+  h1.title { font-size: 30px; line-height: 1.15; margin: 0 0 10px; }
+  .lede { margin-top: 20px; font-size: 16px; color: var(--slate); max-width: 60ch; }
+
+  section { margin-top: 44px; }
+  section h2 {
+    font-size: 19px;
+    margin: 0 0 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  section p.desc { color: var(--slate); font-size: 14.5px; margin: 10px 0 18px; }
+
+  code.tag {
+    display: block;
+    background: var(--frost);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    color: var(--slate);
+    margin-bottom: 18px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* ---------- variant 1: framed figure with caption ---------- */
+
+  .figure {
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--frost);
+  }
+  .figure img { display: block; width: 100%; }
+  .figure figcaption {
+    padding: 10px 16px;
+    font-size: 13px;
+    color: var(--slate-quiet);
+    border-top: 1px solid var(--line);
+  }
+
+  /* ---------- variant 2: bare rounded image, no card ---------- */
+
+  .bare-img {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  /* ---------- variant 3: constrained + centered, for portrait shots ---------- */
+
+  .contained {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  footer.doc-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--slate-quiet);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="home-link" href="/">&larr; hackinshack.org</a>
+
+  <div class="draft-note">
+    <strong>Test page — not part of the site</strong>
+    Built to try out image layout options against the design system. Not linked from anywhere else and shouldn't ship. Delete once you've picked a pattern you like.
+  </div>
+
+  <header class="masthead">
+    <div class="eyebrow"><span class="stone"></span>CurlingOne</div>
+    <h1 class="title">Image Test</h1>
+    <p class="lede">Three ways of dropping <code>docs/images/tools.jpg</code> into a page, all using the site's existing ice/granite tokens. Resize the window or toggle light/dark mode to see how each one holds up.</p>
+  </header>
+
+  <section>
+    <h2>1. Framed figure with caption</h2>
+    <p class="desc">Matches the bordered "card" look used for mode cards and control lists elsewhere on the site. Best for screenshots or gameplay captures that need a caption.</p>
+    <code class="tag">&lt;figure class="figure"&gt;
+  &lt;img src="/docs/images/tools.jpg" alt="..."&gt;
+  &lt;figcaption&gt;Caption text here&lt;/figcaption&gt;
+&lt;/figure&gt;</code>
+    <figure class="figure">
+      <img src="/docs/images/tools.jpg" alt="Tools graphic from the Hackin' Shack asset library">
+      <figcaption>Framed variant — border, rounded corners, caption strip below.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>2. Bare image, no frame</h2>
+    <p class="desc">Just a rounded-corner image with no card around it. Reads more like a hero or inline illustration than a documented screenshot.</p>
+    <code class="tag">&lt;img class="bare-img" src="/docs/images/tools.jpg" alt="..."&gt;</code>
+    <img class="bare-img" src="/docs/images/tools.jpg" alt="Tools graphic from the Hackin' Shack asset library">
+  </section>
+
+  <section>
+    <h2>3. Constrained &amp; centered</h2>
+    <p class="desc">Caps the width and centers the image — useful for a portrait-oriented shot like this one, so it doesn't stretch full-width and dominate the page.</p>
+    <code class="tag">&lt;div class="figure contained"&gt;
+  &lt;img src="/docs/images/tools.jpg" alt="..."&gt;
+  &lt;figcaption&gt;Caption text here&lt;/figcaption&gt;
+&lt;/div&gt;</code>
+    <div class="figure contained">
+      <img src="/docs/images/tools.jpg" alt="Tools graphic from the Hackin' Shack asset library">
+      <figcaption>Framed + width-capped, centered on the page.</figcaption>
+    </div>
+  </section>
+
+  <footer class="doc-footer">
+    CurlingOne — scratch page
+  </footer>
+
+</div>
+</body>
+</html>

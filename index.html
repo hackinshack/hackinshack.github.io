@@ -1,26 +1,475 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
-    <link rel="icon" href="/docs/images/logo_square.png">
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
-    <link rel="stylesheet" type="text/css" href="/docs/css/style.css">
-    <title>Hackin' Shack</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
+<link rel="icon" href="/docs/images/iconCurlingOne.png">
+<title>CurlingOne — VR Curling for Meta Quest</title>
+<meta name="description" content="A multiplayer virtual reality curling game for Meta Quest. Play Standard or Doubles, solo against AI or with friends in a private room. Net proceeds support a nonprofit.">
+<style>
+  :root {
+    --ice: #f4f7fa;
+    --frost: #ffffff;
+    --ink: #1b2430;
+    --slate: #5b6b7c;
+    --slate-quiet: #7c8b9a;
+    --granite: #8b3a35;
+    --granite-strong: #6f2d29;
+    --line: #d7e0e8;
+    --note-bg: #fbf3e7;
+    --note-line: #e6cfa8;
+    --note-ink: #6b4d1f;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ice: #121821;
+      --frost: #1a222c;
+      --ink: #e8edf2;
+      --slate: #93a4b5;
+      --slate-quiet: #6f8092;
+      --granite: #d18c86;
+      --granite-strong: #e3a9a3;
+      --line: #2b3743;
+      --note-bg: #2a2313;
+      --note-line: #4d3f1e;
+      --note-ink: #e0c48a;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ice: #121821;
+    --frost: #1a222c;
+    --ink: #e8edf2;
+    --slate: #93a4b5;
+    --slate-quiet: #6f8092;
+    --granite: #d18c86;
+    --granite-strong: #e3a9a3;
+    --line: #2b3743;
+    --note-bg: #2a2313;
+    --note-line: #4d3f1e;
+    --note-ink: #e0c48a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ice);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  h1, h2, h3 {
+    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  a { color: var(--granite); }
+  a:hover { color: var(--granite-strong); }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- nav ---------- */
+
+  header.site-nav {
+    border-bottom: 1px solid var(--line);
+    padding: 18px 0;
+  }
+
+  .site-nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: ui-serif, Georgia, serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .wordmark .stone {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--granite);
+    flex: none;
+  }
+
+  nav.links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  nav.links a {
+    color: var(--slate);
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+
+  nav.links a:hover { color: var(--granite); }
+
+  /* ---------- draft note ---------- */
+
+  .draft-note {
+    margin: 24px 0 0;
+    padding: 18px 22px;
+    background: var(--note-bg);
+    border: 1px solid var(--note-line);
+    border-radius: 6px;
+    color: var(--note-ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .draft-note strong {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--note-ink);
+  }
+  .draft-note code {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  /* ---------- hero ---------- */
+
+  section.hero {
+    padding: 72px 0 56px;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--granite);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+
+  .eyebrow .stone {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--granite);
+    flex: none;
+  }
+
+  h1.title {
+    font-size: 46px;
+    line-height: 1.1;
+    max-width: 18ch;
+  }
+
+  .lede {
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--slate);
+    max-width: 56ch;
+  }
+
+  .cta-row {
+    margin-top: 32px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 13px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--granite);
+    color: #fff;
+  }
+  .btn-primary:hover { background: var(--granite-strong); color: #fff; }
+
+  .btn-secondary {
+    background: var(--frost);
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .btn-secondary:hover { border-color: var(--granite); color: var(--granite); }
+
+  /* ---------- generic section ---------- */
+
+  section.block {
+    padding: 48px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .block-head {
+    max-width: 62ch;
+    margin-bottom: 28px;
+  }
+
+  .block-head h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .block-head p {
+    color: var(--slate);
+    font-size: 15.5px;
+    margin: 0;
+  }
+
+  /* ---------- feature grid ---------- */
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .feature-card {
+    padding: 20px 22px;
+    background: var(--frost);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  .feature-card h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+    color: var(--granite-strong);
+  }
+
+  .feature-card p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+
+  /* ---------- two-column blocks ---------- */
+
+  .split {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .split p { color: var(--ink); font-size: 15.5px; margin: 12px 0; }
+  .split ul { margin: 12px 0; padding-left: 20px; }
+  .split li { margin: 6px 0; font-size: 15.5px; color: var(--ink); }
+  .split li::marker { color: var(--slate-quiet); }
+
+  .side-card {
+    padding: 22px 24px;
+    background: var(--frost);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  /* ---------- studio section w/ animation ---------- */
+
+  section.studio .split { grid-template-columns: 1fr 260px; }
+
+  #sign-widget {
+    width: 220px;
+    margin: 0 auto;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #000;
+    overflow: hidden;
+  }
+
+  /* ---------- footer ---------- */
+
+  footer.site-footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0 56px;
+    color: var(--slate-quiet);
+    font-size: 13px;
+  }
+
+  footer.site-footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer.site-footer nav {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  footer.site-footer nav a {
+    color: var(--slate-quiet);
+    text-decoration: none;
+  }
+  footer.site-footer nav a:hover { color: var(--granite); }
+
+  @media (max-width: 760px) {
+    h1.title { font-size: 34px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    section.studio .split { grid-template-columns: 1fr; }
+    #sign-widget { width: 180px; }
+  }
+</style>
 </head>
-
 <body>
-    <script src="/docs/js_functions/prototypes.js"></script>
-    <script src="/docs/js_functions/standard_page.js"></script>
-    <script src="/docs/js_functions/animation_classes.js"></script>
-    <script src="home_sketch.js"></script>
-    <div class="container">
-        <header id="heads-up"></header>
-        <menu id="menu_up"></menu>
-        <footer id="menu_down"></footer>
-    </div>
-</body>
 
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="wordmark" href="/"><span class="stone"></span>CurlingOne</a>
+      <nav class="links">
+        <a href="/docs/how-to-play/">How to Play</a>
+        <a href="/docs/features/">Features</a>
+        <a href="/docs/faq/">FAQ</a>
+        <a href="/docs/nonprofit/">Nonprofit</a>
+        <a href="/docs/support/">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="draft-note">
+      <strong>Draft — not yet live</strong>
+      Building on the <code>multiplayer-launch</code> branch. Fill in <code>[Quest Store link]</code> before merging to <code>main</code>. Delete this box once it's ready.
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="stone"></span>Now with multiplayer</div>
+      <h1 class="title">Real curling, thrown by hand, in VR.</h1>
+      <p class="lede">CurlingOne brings a full sheet of ice to Meta Quest — physical stone delivery, real sweeping, and real rules. Play solo against AI, or invite friends into a private match with voice chat.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="[Quest Store link]">Get CurlingOne on Quest</a>
+        <a class="btn btn-secondary" href="/docs/how-to-play/">See How to Play</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>Built for the sport, not just the idea of it</h2>
+        <p>Delivery, sweeping, and scoring all work the way they do on real ice.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Full-motion delivery</h3>
+          <p>Grab the stone, set your line and weight, and physically slide it down the ice — curl comes from how you release, not a canned animation.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Sweeping that matters</h3>
+          <p>Sweep in front of a moving stone to change how far it travels. How you sweep actually affects the shot.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Real rules, enforced</h3>
+          <p>Hammer, house, ends, and scoring work as they should, including the 5-rock, no-tick, and Doubles power-play rules.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap split">
+      <div>
+        <h2>Play your way</h2>
+        <p>Play the classic 4-versus-4 <strong>Standard</strong> game, or the faster 2-versus-2 <strong>Doubles</strong> format. Short a player? Any open slot on either team can be handed to the AI, so you're never stuck waiting on a full roster.</p>
+        <ul>
+          <li><strong>Single Player</strong> — take on a full AI team, from Very Low to Very High skill.</li>
+          <li><strong>Multiplayer</strong> — private rooms only, so you're only ever matched with people you've invited.</li>
+        </ul>
+        <p><a href="/docs/features/">See all features &rarr;</a></p>
+      </div>
+      <div class="side-card">
+        <h3 style="margin:0 0 10px;font-size:16px;color:var(--granite-strong);">No public matchmaking</h3>
+        <p style="margin:0;font-size:14.5px;color:var(--ink);">Agree on a room name with the people you want to play with, then create or join it together. There's no lobby of strangers — just spatial voice chat with the people you invited.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap split">
+      <div class="side-card">
+        <h3 style="margin:0 0 10px;font-size:16px;color:var(--granite-strong);">Where the money goes</h3>
+        <p style="margin:0;font-size:14.5px;color:var(--ink);">Net proceeds from CurlingOne support <strong>[Nonprofit Name]</strong>.</p>
+      </div>
+      <div>
+        <h2>More than a game</h2>
+        <p>We built CurlingOne to introduce people to curling with as low a barrier as possible — no experience required, real rules taught step by step. Net proceeds go toward a nonprofit cause, so playing does a little good beyond the game itself.</p>
+        <p><a href="/docs/nonprofit/">Read more about the mission &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block studio">
+    <div class="wrap split">
+      <div>
+        <h2>Made by Hackin' Shack</h2>
+        <p>CurlingOne is built by Hackin' Shack, a small team putting the sign up as we go. Thanks for stopping by.</p>
+      </div>
+      <div id="sign-widget"></div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>&copy; Hackin' Shack — CurlingOne</div>
+      <nav>
+        <a href="/docs/how-to-play/">How to Play</a>
+        <a href="/docs/features/">Features</a>
+        <a href="/docs/faq/">FAQ</a>
+        <a href="/docs/nonprofit/">Nonprofit</a>
+        <a href="/docs/support/">Support</a>
+        <a href="/docs/privacy/">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
+  <script>
+    // Minimal color helper — Pulley/Fork_Lift (animation_classes.js) expect a
+    // Globals class with these getters. The full one lives in prototypes.js,
+    // but that file also defines the old site's page/menu framework, which
+    // this homepage doesn't use, so a small standalone version lives here instead.
+    class Globals {
+      static get_blue() { return color(100, 200, 250, 200); }
+      static get_green() { return color(200, 250, 100, 200); }
+      static get_orange() { return color(250, 200, 100, 200); }
+    }
+  </script>
+  <script src="/docs/js_functions/animation_classes.js?v=2"></script>
+  <script src="/docs/js_functions/sign_animation.js?v=2"></script>
+</body>
 </html>

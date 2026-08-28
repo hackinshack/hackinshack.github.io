@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
+<link rel="icon" href="/docs/images/iconCurlingOne.png">
+<title>CurlingOne — Features</title>
+<style>
+  :root {
+    --ice: #f4f7fa;
+    --frost: #ffffff;
+    --ink: #1b2430;
+    --slate: #5b6b7c;
+    --slate-quiet: #7c8b9a;
+    --granite: #8b3a35;
+    --granite-strong: #6f2d29;
+    --line: #d7e0e8;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ice: #121821;
+      --frost: #1a222c;
+      --ink: #e8edf2;
+      --slate: #93a4b5;
+      --slate-quiet: #6f8092;
+      --granite: #d18c86;
+      --granite-strong: #e3a9a3;
+      --line: #2b3743;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ice: #121821;
+    --frost: #1a222c;
+    --ink: #e8edf2;
+    --slate: #93a4b5;
+    --slate-quiet: #6f8092;
+    --granite: #d18c86;
+    --granite-strong: #e3a9a3;
+    --line: #2b3743;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ice);
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 20px 96px;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  h1, h2, h3 {
+    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  a.home-link {
+    display: inline-block;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--slate);
+    text-decoration: none;
+  }
+
+  a.home-link:hover { color: var(--granite); }
+
+  a { color: var(--granite); }
+  a:hover { color: var(--granite-strong); }
+
+  /* ---------- masthead ---------- */
+
+  header.masthead {
+    margin-top: 32px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--granite);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .eyebrow .stone {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--granite);
+    flex: none;
+  }
+
+  h1.title {
+    font-size: 36px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+  }
+
+  .lede {
+    margin-top: 20px;
+    font-size: 17px;
+    color: var(--slate);
+    max-width: 62ch;
+  }
+
+  /* ---------- feature groups ---------- */
+
+  section.group {
+    margin-top: 56px;
+  }
+
+  section.group .group-head {
+    max-width: 62ch;
+    margin-bottom: 24px;
+  }
+
+  section.group h2 {
+    font-size: 24px;
+    margin: 0 0 8px;
+  }
+
+  section.group .group-dek {
+    color: var(--slate);
+    font-size: 15.5px;
+    margin: 0;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .feature-card {
+    padding: 20px 22px;
+    background: var(--frost);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  .feature-card h3 {
+    margin: 0 0 8px;
+    font-size: 16.5px;
+    color: var(--granite-strong);
+  }
+
+  .feature-card p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+
+  .feature-card.wide {
+    grid-column: 1 / -1;
+  }
+
+  .inline-link {
+    display: inline-block;
+    margin-top: 44px;
+    font-size: 14.5px;
+  }
+
+  footer.doc-footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--slate-quiet);
+    font-size: 13px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--granite);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 560px) {
+    .feature-grid { grid-template-columns: 1fr; }
+    h1.title { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <a class="home-link" href="/">&larr; hackinshack.org</a>
+
+  <header class="masthead">
+    <div class="eyebrow"><span class="stone"></span>CurlingOne</div>
+    <h1 class="title">Features</h1>
+    <p class="lede">A full sheet of ice, real curling rules, and the people you invite — built for Meta Quest.</p>
+  </header>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Real curling, faithfully simulated</h2>
+      <p class="group-dek">CurlingOne isn't an arcade take on the sport — the physics and rules are the real thing.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Full-motion delivery</h3>
+        <p>Grab the stone, set your line and weight, and physically slide it down the ice. Curl comes from how you twist the controller as you release — not a canned animation.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Sweeping that matters</h3>
+        <p>Sweep in front of a moving stone to shave off friction and change how far it travels. Effort is speed-based, so how you sweep actually affects the shot.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Real rules, enforced</h3>
+        <p>Hammer, house, ends, and scoring all work the way they do on real ice, including the 5-rock and no-tick rules in Standard and the 3-rock power-play rule in Doubles.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Assists for newcomers</h3>
+        <p>Toggleable aim guides — a virtual skip target and a phantom-stone shot preview — help new players read the ice before they're throwing blind.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Play your way</h2>
+      <p class="group-dek">Two formats, and a game that adapts to however many people actually showed up.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Standard &amp; Doubles</h3>
+        <p>Play the classic 4-versus-4 game with a full lineup, or Doubles for a faster 2-versus-2 format.</p>
+      </div>
+      <div class="feature-card">
+        <h3>AI fills any open slot</h3>
+        <p>Short a player? Any open position on either team can be handed to the AI, in Single Player or Multiplayer, so you're never stuck waiting on a full roster.</p>
+      </div>
+      <div class="feature-card wide">
+        <h3>Five levels of AI, adjustable on the fly</h3>
+        <p>AI opponents range from Very Low to Very High skill, and any connected player can adjust the difficulty during setup — not just the host.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Multiplayer built for people you know</h2>
+      <p class="group-dek">No public matchmaking, no strangers dropped into your match — just a shared room name and a full sheet of ice.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Private rooms</h3>
+        <p>Agree on a room name with the people you want to play with, then create or join it. There's no lobby list, so you only ever match with who you've invited.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Spatial voice chat</h3>
+        <p>Voice chat is positional — teammates and opponents sound like they're actually standing where they are on the ice, not flattened into one channel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Your avatar, your rink</h2>
+      <p class="group-dek">You show up as you — in a full arena built for the sport.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Your Meta avatar</h3>
+        <p>CurlingOne uses your own Meta account avatar in the game world, so the people you're playing with recognize you, not a generic stand-in.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Custom team colors</h3>
+        <p>Set your stone and house colors for the match, and CurlingOne remembers your preference for next time.</p>
+      </div>
+      <div class="feature-card wide">
+        <h3>A stadium, not just a sheet of ice</h3>
+        <p>Play in a full arena with crowd-filled stands — curling with the atmosphere of a real event, not an empty warehouse.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <div class="group-head">
+      <h2>Getting oriented in VR</h2>
+      <p class="group-dek">A long sheet of ice in a small room — CurlingOne is built to make that comfortable.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Guided tutorial</h3>
+        <p>An in-VR walkthrough covers movement, teleporting, and rotating before you ever throw a stone, so you're not guessing at controls mid-match.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Teleport &amp; auto-follow</h3>
+        <p>Teleport between ends instead of walking the full sheet, and toggle auto-follow so your view tracks the stone automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <a class="inline-link" href="/docs/how-to-play/">Ready to play? Learn the controls in How to Play &rarr;</a>
+
+  <footer class="doc-footer">
+    CurlingOne
+  </footer>
+
+</div>
+</body>
+</html>
