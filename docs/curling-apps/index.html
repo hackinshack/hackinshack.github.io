@@ -3,10 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
-<link rel="icon" href="/docs/images/logo_square.png">
-<title>About Us — Hackin' Shack</title>
-<meta name="description" content="Hackin' Shack is a registered 501(c)(3) nonprofit organization. 
-  We encourage learning to curl ... and curling to learn.">
+<link rel="icon" href="/docs/images/iconCurlingOne.png">
+<title>Curling Apps — Hackin' Shack</title>
+<meta name="description" content="CurlingOne for Meta Quest, and CurlingSpectator for watching along on PC. Two ways to play, from Hackin' Shack.">
 <style>
   :root {
     --ice: #89b78d;
@@ -168,72 +167,62 @@
     border-top: 1px solid var(--line);
   }
 
-  section.block .wrap { max-width: 720px; }
-
   .block-head {
     max-width: 62ch;
-    margin: 0 0 20px;
-  }
-
-  .block-head h2 {
-    font-size: 24px;
-  }
-
-  section.block p {
-    margin: 14px 0;
-    font-size: 15.5px;
-    color: var(--ink);
-  }
-
-  /* ---------- callout (shared by every section) ---------- */
-
-  .callout {
-    background: var(--frost);
-    border-left: 3px solid var(--granite);
-    border-radius: 0 10px 10px 0;
-    padding: 24px 28px;
-    margin-top: 16px;
-  }
-
-  .callout p {
-    margin: 0;
-    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
-    font-size: 19px;
-    line-height: 1.55;
-    color: var(--ink);
-  }
-
-  .callout a {
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  /* ---------- board ---------- */
-
-  .board-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .board-card {
-    padding: 20px 20px;
-    background: var(--frost);
-    border: 1px solid var(--line);
-    border-radius: 10px;
+    margin: 0 auto 28px;
     text-align: center;
   }
 
-  .board-card .name {
-    font-size: 15.5px;
-    font-weight: 600;
-    color: var(--ink);
+  .block-head h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
   }
 
-  .board-card .role {
-    margin-top: 4px;
-    font-size: 13px;
+  .block-head p {
     color: var(--slate);
+    font-size: 15.5px;
+    margin: 0;
+  }
+
+  /* ---------- project cards ---------- */
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    display: block;
+    padding: 28px 28px 26px;
+    background: var(--frost);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  .project-card:hover { border-color: var(--granite); }
+
+  .project-card .eyebrow { margin-bottom: 14px; }
+
+  .project-card h3 {
+    font-size: 22px;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+
+  .project-card p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--slate);
+  }
+
+  .project-card .goto {
+    display: block;
+    margin-top: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--granite);
   }
 
   /* ---------- footer ---------- */
@@ -266,7 +255,7 @@
 
   @media (max-width: 760px) {
     h1.title { font-size: 34px; }
-    .board-grid { grid-template-columns: 1fr; }
+    .project-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -285,71 +274,27 @@
 
   <section class="hero">
     <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Hackin' Shack</div>
-      <h1 class="title">About Us</h1>
-      <p class="lede">Curling to learn.</p>
+      <div class="eyebrow"><span class="stone"></span>Curling Apps</div>
+      <h1 class="title">Two ways to play.</h1>
+      <p class="lede">Same game, two ways in: strap on a headset and throw the stone yourself, or pull up a chair and watch the match from your PC.</p>
     </div>
   </section>
 
   <section class="block">
     <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Who we are</div>
-      <div class="callout">
-        <p>Hackin' Shack is a registered 501(c)(3) nonprofit organization, dedicated to learning. Our goal is to encourage people of all ages and backgrounds to learn — about curling, and other stuff too.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Our story</div>
-      <div class="callout">
-        <p>Two paths converged: a passion for education, and a love of curling.  
-          We've taught in science classrooms at all levels.  
-          And then a bucket list trip introduced us to curling.  
-          And then, some questions.  Why does the stone curl?  How does sweeping work?  
-          Will my wife let me build a curling simulator in the basement?
-          And the rest, as they say, is history.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Mission</div>
-      <div class="callout">
-        <p>The mission of Hackin' Shack is to promote, encourage, and support educational opportunities, using curling as a conduit.</p>
-      </div>
-    </div>
-  </section>
-
-  <!--
-  <section class="block">
-    <div class="wrap">
-      <div class="block-head"><h2>Board</h2></div>
-      <div class="board-grid">
-        <div class="board-card">
-          <div class="name">Christopher Begley</div>
-          <div class="role">President</div>
-        </div>
-        <div class="board-card">
-          <div class="name">Sean McLaughlin</div>
-          <div class="role">Treasurer</div>
-        </div>
-        <div class="board-card">
-          <div class="name">Charles Daniels</div>
-          <div class="role">Clerk</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  -->
-
-  <section class="block">
-    <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Contact</div>
-      <div class="callout">
-        <p><a href="mailto:chris@hackinshack.org">chris@hackinshack.org</a></p>
+      <div class="project-grid">
+        <a class="project-card" href="/docs/curling/">
+          <div class="eyebrow"><span class="stone"></span>Meta Quest</div>
+          <h3>CurlingOne</h3>
+          <p>A multiplayer virtual reality curling game — real stone delivery, real sweeping, real rules. Solo against AI, or with friends in a private room.</p>
+          <span class="goto">See CurlingOne &rarr;</span>
+        </a>
+        <a class="project-card" href="/docs/curlingspectator/">
+          <div class="eyebrow"><span class="stone"></span>PC companion</div>
+          <h3>CurlingSpectator</h3>
+          <p>Watch a live CurlingOne match from your PC, no headset required — join the room and follow along from the sheet.</p>
+          <span class="goto">See CurlingSpectator &rarr;</span>
+        </a>
       </div>
     </div>
   </section>

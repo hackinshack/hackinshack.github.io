@@ -5,50 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
 <link rel="icon" href="/docs/images/logo_square.png">
 <title>Hackin' Shack</title>
-<meta name="description" content="Hackin' Shack is a small studio building playful things — starting with CurlingOne, a multiplayer VR curling game for Meta Quest, and CurlingSpectator, its PC companion app.">
+<meta name="description" content="Hackin' Shack is a small nonprofit using curling to teach curling, and a little science along the way — a physical curling simulator headed for a trailer, plus CurlingOne and CurlingSpectator.">
 <style>
   :root {
-    --ice: #f4f7fa;
-    --frost: #ffffff;
-    --ink: #1b2430;
-    --slate: #5b6b7c;
+    --ice: #89b78d;
+    --frost: #bddbbf;
+    --ink: #1a293c;
+    --slate: #3c4653;
     --slate-quiet: #7c8b9a;
-    --granite: #8b3a35;
-    --granite-strong: #6f2d29;
-    --line: #d7e0e8;
-    --note-bg: #fbf3e7;
-    --note-line: #e6cfa8;
-    --note-ink: #6b4d1f;
+    --granite: #fa3804;
+    --granite-strong: #fa3804;
+    --line: #7a907b;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --ice: #121821;
-      --frost: #1a222c;
-      --ink: #e8edf2;
-      --slate: #93a4b5;
+      --frost: #2f3c4b;
+      --ink: #becfe0;
+      --slate: #9ab3cb;
       --slate-quiet: #6f8092;
-      --granite: #d18c86;
-      --granite-strong: #e3a9a3;
+      --granite: #db4e2a;
+      --granite-strong: #db4d29;
       --line: #2b3743;
-      --note-bg: #2a2313;
-      --note-line: #4d3f1e;
-      --note-ink: #e0c48a;
     }
   }
 
   :root[data-theme="dark"] {
     --ice: #121821;
-    --frost: #1a222c;
-    --ink: #e8edf2;
-    --slate: #93a4b5;
+    --frost: #2f3c4b;
+    --ink: #becfe0;
+    --slate: #9ab3cb;
     --slate-quiet: #6f8092;
-    --granite: #d18c86;
-    --granite-strong: #e3a9a3;
+    --granite: #db4e2a;
+    --granite-strong: #db4d29;
     --line: #2b3743;
-    --note-bg: #2a2313;
-    --note-line: #4d3f1e;
-    --note-ink: #e0c48a;
   }
 
   * { box-sizing: border-box; }
@@ -128,33 +119,6 @@
 
   nav.links a:hover { color: var(--granite); }
 
-  /* ---------- draft note ---------- */
-
-  .draft-note {
-    margin: 24px 0 0;
-    padding: 18px 22px;
-    background: var(--note-bg);
-    border: 1px solid var(--note-line);
-    border-radius: 6px;
-    color: var(--note-ink);
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .draft-note strong {
-    display: block;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    color: var(--note-ink);
-  }
-  .draft-note code {
-    background: rgba(0,0,0,0.06);
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-size: 13px;
-  }
-
   /* ---------- hero ---------- */
 
   section.hero {
@@ -204,6 +168,7 @@
   }
 
   #hero-animation {
+    position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
     border: 1px solid var(--line);
@@ -212,10 +177,18 @@
     overflow: hidden;
   }
 
-  .hero-visual p {
-    margin: 14px 0 0;
-    font-size: 13px;
-    color: var(--slate-quiet);
+  #hero-animation canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #hero-house {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 4s ease;
   }
 
   /* ---------- generic section ---------- */
@@ -249,6 +222,8 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
+
+  .project-grid-3 { grid-template-columns: repeat(3, 1fr); }
 
   .project-card {
     display: block;
@@ -313,7 +288,7 @@
 
   @media (max-width: 760px) {
     h1.title { font-size: 34px; }
-    .project-grid { grid-template-columns: 1fr; }
+    .project-grid, .project-grid-3 { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -323,28 +298,28 @@
     <div class="wrap">
       <a class="wordmark" href="/"><span class="stone"></span>Hackin' Shack</a>
       <nav class="links">
-        <a href="/docs/curling/">CurlingOne</a>
-        <a href="/docs/curlingspectator/">CurlingSpectator</a>
+        <a href="/docs/about/">About Us</a>
+        <a href="/docs/curling-simulator/">Curling Simulator</a>
+        <a href="/docs/curling-apps/">Curling Apps</a>
       </nav>
     </div>
   </header>
 
-  <div class="wrap">
-    <div class="draft-note">
-      <strong>Draft — not yet live</strong>
-      Building on the <code>multiplayer-launch</code> branch. This replaces the current hackinshack.org homepage. Delete this box once it's ready to merge to <code>main</code>.
-    </div>
-  </div>
-
   <section class="hero">
     <div class="wrap">
       <div class="eyebrow"><span class="stone"></span>Hackin' Shack</div>
-      <h1 class="title">We build playful things, from scratch.</h1>
-      <p class="lede">A small studio putting the sign up as we go. Right now that means CurlingOne, a multiplayer VR curling game for Meta Quest, and CurlingSpectator, its companion app for watching along on PC.</p>
+      <h1 class="title">Curling to learn.</h1>
+      <p class="lede">Learn about curling. And maybe a little more.</p>
 
       <div class="hero-visual">
-        <div id="hero-animation"></div>
-        <p>Pulling the sign up, one hack at a time.</p>
+        <div id="hero-animation">
+          <svg id="hero-house" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <!-- outer band: fills between the 8' ring (r=16.667) and 12' ring (r=25) -->
+            <circle cx="50" cy="50" r="20.833" fill="none" stroke="var(--granite)" stroke-width="8.333"/>
+            <!-- inner band: fills between the 1' button (r=2.083) and 4' ring (r=8.333) -->
+            <circle cx="50" cy="50" r="5.208" fill="none" stroke="var(--granite)" stroke-width="6.25"/>
+          </svg>
+        </div>
       </div>
     </div>
   </section>
@@ -352,21 +327,27 @@
   <section class="block">
     <div class="wrap">
       <div class="block-head">
-        <h2>What we're building</h2>
-        <p>Two pieces of the same project — play it in VR, or watch along from a PC.</p>
+        <h2>Where to go from here</h2>
+        <p>Who we are, what we're building, and the apps you can use today.</p>
       </div>
-      <div class="project-grid">
-        <a class="project-card" href="/docs/curling/">
-          <div class="eyebrow"><span class="stone"></span>Meta Quest</div>
-          <h3>CurlingOne</h3>
-          <p>A multiplayer virtual reality curling game — real stone delivery, real sweeping, real rules. Solo against AI, or with friends in a private room.</p>
-          <span class="goto">See CurlingOne &rarr;</span>
+      <div class="project-grid project-grid-3">
+        <a class="project-card" href="/docs/about/">
+          <div class="eyebrow"><span class="stone"></span>Registered nonprofit</div>
+          <h3>About Us</h3>
+          <p>Our story, and how to get in touch.</p>
+          <span class="goto">Meet Hackin' Shack &rarr;</span>
         </a>
-        <a class="project-card" href="/docs/curlingspectator/">
-          <div class="eyebrow"><span class="stone"></span>PC companion</div>
-          <h3>CurlingSpectator</h3>
-          <p>Watch a live CurlingOne match from your PC, no headset required — join the room and follow along from the sheet.</p>
-          <span class="goto">See CurlingSpectator &rarr;</span>
+        <a class="project-card" href="/docs/curling-simulator/">
+          <div class="eyebrow"><span class="stone"></span>No ice? No problem!</div>
+          <h3>Curling Simulator</h3>
+          <p>Can you curl without ice?  Well ...</p>
+          <span class="goto">See the simulator &rarr;</span>
+        </a>
+        <a class="project-card" href="/docs/curling-apps/">
+          <div class="eyebrow"><span class="stone"></span>Available now</div>
+          <h3>Curling Apps</h3>
+          <p>CurlingOne for Meta Quest, and CurlingSpectator for watching along on PC.</p>
+          <span class="goto">See the apps &rarr;</span>
         </a>
       </div>
     </div>
@@ -376,8 +357,9 @@
     <div class="wrap">
       <div>&copy; Hackin' Shack</div>
       <nav>
-        <a href="/docs/curling/">CurlingOne</a>
-        <a href="/docs/curlingspectator/">CurlingSpectator</a>
+        <a href="/docs/about/">About Us</a>
+        <a href="/docs/curling-simulator/">Curling Simulator</a>
+        <a href="/docs/curling-apps/">Curling Apps</a>
       </nav>
     </div>
   </footer>
@@ -395,6 +377,6 @@
     }
   </script>
   <script src="/docs/js_functions/animation_classes.js?v=2"></script>
-  <script src="/docs/js_functions/home_hero_animation.js?v=1"></script>
+  <script src="/docs/js_functions/home_hero_animation.js?v=3"></script>
 </body>
 </html>

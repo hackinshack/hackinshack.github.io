@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
 <link rel="icon" href="/docs/images/logo_square.png">
-<title>About Us — Hackin' Shack</title>
-<meta name="description" content="Hackin' Shack is a registered 501(c)(3) nonprofit organization. 
-  We encourage learning to curl ... and curling to learn.">
+<title>Curling Simulator — Hackin' Shack</title>
+<meta name="description" content="A roughly 24-foot physical curling simulator — deliver a real stone and watch its path tracked on screen. Already a hit at local fairs, with a trailer in the works.">
 <style>
   :root {
     --ice: #89b78d;
@@ -168,71 +167,101 @@
     border-top: 1px solid var(--line);
   }
 
-  section.block .wrap { max-width: 720px; }
-
   .block-head {
     max-width: 62ch;
-    margin: 0 0 20px;
-  }
-
-  .block-head h2 {
-    font-size: 24px;
-  }
-
-  section.block p {
-    margin: 14px 0;
-    font-size: 15.5px;
-    color: var(--ink);
-  }
-
-  /* ---------- callout (shared by every section) ---------- */
-
-  .callout {
-    background: var(--frost);
-    border-left: 3px solid var(--granite);
-    border-radius: 0 10px 10px 0;
-    padding: 24px 28px;
-    margin-top: 16px;
-  }
-
-  .callout p {
-    margin: 0;
-    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
-    font-size: 19px;
-    line-height: 1.55;
-    color: var(--ink);
-  }
-
-  .callout a {
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  /* ---------- board ---------- */
-
-  .board-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .board-card {
-    padding: 20px 20px;
-    background: var(--frost);
-    border: 1px solid var(--line);
-    border-radius: 10px;
+    margin: 0 auto 28px;
     text-align: center;
   }
 
-  .board-card .name {
+  .block-head h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+
+  .block-head p {
+    color: var(--slate);
     font-size: 15.5px;
+    margin: 0;
+  }
+
+  /* ---------- video placeholders ---------- */
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .video-slot {
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    background: var(--frost);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--slate);
+  }
+
+  .video-slot .play-glyph {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-slot .play-glyph::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 11px solid var(--slate);
+    margin-left: 3px;
+  }
+
+  .video-slot .caption {
+    font-size: 13.5px;
     font-weight: 600;
+    color: var(--slate);
+  }
+
+  .video-slot .status {
+    font-size: 12px;
+    color: var(--slate-quiet);
+  }
+
+  /* ---------- text cards ---------- */
+
+  .note-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .note-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+  .note-card {
+    padding: 22px 24px;
+    background: var(--frost);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+
+  .note-card h3 {
+    font-size: 17px;
+    margin: 0 0 10px;
     color: var(--ink);
   }
 
-  .board-card .role {
-    margin-top: 4px;
-    font-size: 13px;
+  .note-card p {
+    margin: 0;
+    font-size: 14.5px;
     color: var(--slate);
   }
 
@@ -266,7 +295,7 @@
 
   @media (max-width: 760px) {
     h1.title { font-size: 34px; }
-    .board-grid { grid-template-columns: 1fr; }
+    .video-grid, .note-grid, .note-grid-3 { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -285,71 +314,48 @@
 
   <section class="hero">
     <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Hackin' Shack</div>
-      <h1 class="title">About Us</h1>
-      <p class="lede">Curling to learn.</p>
+      <div class="eyebrow"><span class="stone"></span>Hands-on &amp; mobile</div>
+      <h1 class="title">Curling Simulator</h1>
+      <p class="lede">A roughly 24-foot sliding track where you deliver a real stone by hand, just like on the ice. Its path is tracked and projected on a screen in front of you — the same idea as a golf simulator, built for curling. We've already brought it to local fairs, and we're outfitting a trailer next so it can travel to schools, parties, and bonspiels.</p>
     </div>
   </section>
 
   <section class="block">
     <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Who we are</div>
-      <div class="callout">
-        <p>Hackin' Shack is a registered 501(c)(3) nonprofit organization, dedicated to learning. Our goal is to encourage people of all ages and backgrounds to learn — about curling, and other stuff too.</p>
+      <div class="block-head">
+        <h2>See it in action</h2>
+        <p>Video from the simulator is on its way — these are reserved spots for the first clips.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Our story</div>
-      <div class="callout">
-        <p>Two paths converged: a passion for education, and a love of curling.  
-          We've taught in science classrooms at all levels.  
-          And then a bucket list trip introduced us to curling.  
-          And then, some questions.  Why does the stone curl?  How does sweeping work?  
-          Will my wife let me build a curling simulator in the basement?
-          And the rest, as they say, is history.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Mission</div>
-      <div class="callout">
-        <p>The mission of Hackin' Shack is to promote, encourage, and support educational opportunities, using curling as a conduit.</p>
-      </div>
-    </div>
-  </section>
-
-  <!--
-  <section class="block">
-    <div class="wrap">
-      <div class="block-head"><h2>Board</h2></div>
-      <div class="board-grid">
-        <div class="board-card">
-          <div class="name">Christopher Begley</div>
-          <div class="role">President</div>
+      <div class="video-grid">
+        <div class="video-slot">
+          <div class="play-glyph"></div>
+          <div class="caption">Delivering a stone</div>
+          <div class="status">Video coming soon</div>
         </div>
-        <div class="board-card">
-          <div class="name">Sean McLaughlin</div>
-          <div class="role">Treasurer</div>
-        </div>
-        <div class="board-card">
-          <div class="name">Charles Daniels</div>
-          <div class="role">Clerk</div>
+        <div class="video-slot">
+          <div class="play-glyph"></div>
+          <div class="caption">Stone tracking on screen</div>
+          <div class="status">Video coming soon</div>
         </div>
       </div>
     </div>
   </section>
-  -->
 
   <section class="block">
     <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Contact</div>
-      <div class="callout">
-        <p><a href="mailto:chris@hackinshack.org">chris@hackinshack.org</a></p>
+      <div class="note-grid note-grid-3">
+        <div class="note-card">
+          <h3>What it is</h3>
+          <p>A roughly 24-foot sliding track that lets you deliver a real curling stone by hand. As it travels, the stone's path is tracked and projected on a screen — similar to how a golf simulator shows your shot, but for curling.</p>
+        </div>
+        <div class="note-card">
+          <h3>Where it's been</h3>
+          <p>We've already brought the simulator out to local fairs, letting people try a delivery and see how it feels without needing ice.</p>
+        </div>
+        <div class="note-card">
+          <h3>Where it's headed</h3>
+          <p>We're outfitting a trailer so it can travel to schools, parties, and bonspiels — pairing the hands-on experience with some of the physics (momentum, friction, spin) behind what's happening on the ice.</p>
+        </div>
       </div>
     </div>
   </section>

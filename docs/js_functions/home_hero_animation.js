@@ -1,18 +1,27 @@
-// Hero "building the shack" animation for the Hackin' Shack homepage.
-// Same technique as sign_animation.js (bounded container, global-mode p5
-// sketch reusing animation_classes.js) but rendered larger as the page's
-// central visual instead of a small corner widget.
+// Hero visual for the Hackin' Shack homepage: opens on a to-scale curling
+// house (plain SVG, markup lives in index.html), then crossfades to the
+// finished "sign" image, shown statically. The sign itself reuses the same
+// object model as the original build-up animation (and sign_animation.js's
+// small corner widget) — the pulleys/forklifts/wire all freeze themselves in
+// place once "arrived" (see MyImage/Pulley/Fork_Lift in animation_classes.js),
+// so fast-forwarding the same update loop many times before ever drawing
+// converges on the exact same resting frame the animation used to end on,
+// then we draw that one frame and stop — no moving parts, no canvas loop.
 
-let hero_box_size = 480; // overwritten in setup() to match the hero's real display size
-let hero_fresh_load = true;
+const HERO_HOUSE_HOLD_MS = 400; // how long the house stays on screen before it starts fading out
+const HERO_LOGO_DELAY_MS = 1500; // gap after the house starts fading before the logo starts fading in
+const HERO_LOGO_FADE_MS = 4000; // must match the canvas opacity transition set below
+
+let hero_box_size = 480; // overwritten in setup() to match the widget's real display size
 
 let hero_pulley_left, hero_pulley_right;
 let hero_fork_lift, hero_fork_lift2;
 let hero_wire, hero_e_switch;
 let hero_hackin_img, hero_shack_img, hero_walls_img, hero_roof_img;
 let hero_hackin_img_, hero_shack_img_, hero_walls_img_, hero_roof_img_;
-let hero_bg_color;
 let hero_words_lit = false;
+
+const HERO_SETTLE_STEPS = 2000; // far more than enough for every part to reach "arrived"
 
 function preload() {
     hero_hackin_img_ = loadImage('/docs/images/hackin.png');
@@ -22,55 +31,60 @@ function preload() {
 }
 
 function setup() {
-    // Render at the container's actual on-screen size, same reasoning as
-    // sign_animation.js: downscaling this much overlapping translucent line
-    // art in the browser blurs strokes together.
     let container = document.getElementById('hero-animation');
     if (container && container.offsetWidth > 0) hero_box_size = container.offsetWidth;
 
     let canv = createCanvas(hero_box_size, hero_box_size);
     canv.parent('hero-animation');
     canv.style('display', 'block');
+    canv.style('opacity', '0');
+    canv.style('transition', 'opacity ' + (HERO_LOGO_FADE_MS / 1000) + 's ease');
 
-    hero_bg_color = color(0);
+    angleMode(DEGREES);
+    imageMode(CENTER);
+    rectMode(CENTER);
+
+    create_hero_images();
+    create_hero_pulleys();
+    create_hero_forklifts();
+    create_hero_wire();
+
+    for (let i = 0; i < HERO_SETTLE_STEPS; i++) advance_hero_state();
+
+    background(0);
+    tint(255, 255);
+    hero_roof_img.show(window);
+    hero_walls_img.show(window);
+    hero_hackin_img.show(window);
+    hero_shack_img.show(window);
+
+    noLoop();
+
+    setTimeout(function () {
+        let house = document.getElementById('hero-house');
+        if (house) house.style.opacity = '0';
+    }, HERO_HOUSE_HOLD_MS);
+
+    setTimeout(function () {
+        canv.style('opacity', '1');
+    }, HERO_HOUSE_HOLD_MS + HERO_LOGO_DELAY_MS);
 }
 
-function draw() {
-    if (hero_fresh_load) {
-        angleMode(DEGREES);
-        imageMode(CENTER);
-        rectMode(CENTER);
-
-        create_hero_images();
-        create_hero_pulleys();
-        create_hero_forklifts();
-        create_hero_wire();
-
-        hero_fresh_load = false;
-    }
-
-    background(hero_bg_color);
-
+function advance_hero_state() {
     let a = random(0.5, 3.0);
     let b = random(0.5, 5.0);
 
     if (hero_pulley_left.has_arrived && hero_pulley_right.has_arrived) {
         hero_roof_img.has_arrived = true;
-        hero_pulley_left.fade(3);
-        hero_pulley_right.fade(3);
     }
 
     hero_pulley_left.turn_handle(a);
     hero_pulley_right.turn_handle(-b);
 
-    hero_pulley_left.show(window);
-    hero_pulley_right.show(window);
-
     let dx_fork2 = -2;
     if (hero_fork_lift2.has_arrived) {
         dx_fork2 = -dx_fork2;
         hero_shack_img.has_arrived = true;
-        hero_fork_lift2.fade(2);
     }
     let fx2 = hero_fork_lift2.move(dx_fork2);
     let fy2 = hero_fork_lift2.move_fork(0);
@@ -86,26 +100,18 @@ function draw() {
         dx_fork = -2;
         dx_lift = -dx_lift;
         hero_hackin_img.has_arrived = true;
-        hero_fork_lift.fade(2);
 
         hero_wire.advance(frameCount);
-        hero_wire.show(window);
-        hero_e_switch.show(window);
         if (hero_wire.is_complete) {
             hero_e_switch.close();
         }
         if (hero_e_switch.state == 1) {
-            hero_wire.fade(2);
-            hero_e_switch.fade(2);
             hero_words_lit = true;
         }
     }
 
     let fx = hero_fork_lift.move(dx_fork);
     let fy = hero_fork_lift.move_fork(dx_lift);
-
-    hero_fork_lift.show(window);
-    hero_fork_lift2.show(window);
 
     let re1 = hero_pulley_left.get_rope_end();
     let re2 = hero_pulley_right.get_rope_end();
@@ -117,12 +123,6 @@ function draw() {
 
     hero_hackin_img.position(fx + 0.26 * hero_box_size, fy - 0.08 * hero_box_size);
     hero_shack_img.position(fx2 - 0.23 * hero_box_size, fy2 - 0.07 * hero_box_size);
-
-    tint(255, hero_words_lit ? 255 : 100);
-    hero_roof_img.show(window);
-    hero_walls_img.show(window);
-    hero_hackin_img.show(window);
-    hero_shack_img.show(window);
 }
 
 function create_hero_images() {
@@ -150,9 +150,6 @@ function create_hero_pulleys() {
     hero_pulley_right.set_handle_angle(100);
     hero_pulley_right.set_rope_length(0.15);
     hero_pulley_right.set_rope_total(0.35);
-
-    hero_pulley_left.set_alpha(255);
-    hero_pulley_right.set_alpha(255);
 }
 
 function create_hero_forklifts() {
@@ -162,9 +159,6 @@ function create_hero_forklifts() {
 
     hero_fork_lift2 = new Fork_Lift(hero_box_size, 0.3, 1.2, 0.77, -1);
     hero_fork_lift2.set_x_min(0.9);
-
-    hero_fork_lift.set_alpha(255);
-    hero_fork_lift2.set_alpha(255);
 }
 
 function create_hero_wire() {

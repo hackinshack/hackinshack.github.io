@@ -8,47 +8,38 @@
 <meta name="description" content="CurlingSpectator is a free PC companion app for CurlingOne. Join a match's room and watch live from your desktop, no headset required.">
 <style>
   :root {
-    --ice: #f4f7fa;
-    --frost: #ffffff;
-    --ink: #1b2430;
-    --slate: #5b6b7c;
+    --ice: #89b78d;
+    --frost: #bddbbf;
+    --ink: #1a293c;
+    --slate: #3c4653;
     --slate-quiet: #7c8b9a;
-    --granite: #8b3a35;
-    --granite-strong: #6f2d29;
-    --line: #d7e0e8;
-    --note-bg: #fbf3e7;
-    --note-line: #e6cfa8;
-    --note-ink: #6b4d1f;
+    --granite: #fa3804;
+    --granite-strong: #fa3804;
+    --line: #7a907b;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --ice: #121821;
-      --frost: #1a222c;
-      --ink: #e8edf2;
-      --slate: #93a4b5;
+      --frost: #2f3c4b;
+      --ink: #becfe0;
+      --slate: #9ab3cb;
       --slate-quiet: #6f8092;
-      --granite: #d18c86;
-      --granite-strong: #e3a9a3;
+      --granite: #db4e2a;
+      --granite-strong: #db4d29;
       --line: #2b3743;
-      --note-bg: #2a2313;
-      --note-line: #4d3f1e;
-      --note-ink: #e0c48a;
     }
   }
 
   :root[data-theme="dark"] {
     --ice: #121821;
-    --frost: #1a222c;
-    --ink: #e8edf2;
-    --slate: #93a4b5;
+    --frost: #2f3c4b;
+    --ink: #becfe0;
+    --slate: #9ab3cb;
     --slate-quiet: #6f8092;
-    --granite: #d18c86;
-    --granite-strong: #e3a9a3;
+    --granite: #db4e2a;
+    --granite-strong: #db4d29;
     --line: #2b3743;
-    --note-bg: #2a2313;
-    --note-line: #4d3f1e;
-    --note-ink: #e0c48a;
   }
 
   * { box-sizing: border-box; }
@@ -127,33 +118,6 @@
   }
 
   nav.links a:hover { color: var(--granite); }
-
-  /* ---------- draft note ---------- */
-
-  .draft-note {
-    margin: 24px 0 0;
-    padding: 18px 22px;
-    background: var(--note-bg);
-    border: 1px solid var(--note-line);
-    border-radius: 6px;
-    color: var(--note-ink);
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .draft-note strong {
-    display: block;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    color: var(--note-ink);
-  }
-  .draft-note code {
-    background: rgba(0,0,0,0.06);
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-size: 13px;
-  }
 
   /* ---------- hero ---------- */
 
@@ -354,13 +318,6 @@
       </nav>
     </div>
   </header>
-
-  <div class="wrap">
-    <div class="draft-note">
-      <strong>Draft — not yet live</strong>
-      Building on the <code>multiplayer-launch</code> branch, alongside the new CurlingOne site. Delete this box once it's ready to merge to <code>main</code>.
-    </div>
-  </div>
 
   <section class="hero">
     <div class="wrap">

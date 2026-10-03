@@ -1,0 +1,670 @@
+<title>Ice &amp; Granite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bench-bg: #f4f5f6;
+    --bench-panel: #ffffff;
+    --bench-border: #dadde1;
+    --bench-ink: #1c1f24;
+    --bench-muted: #6b7278;
+    --bench-accent: #4f7a9e;
+    --bench-accent-ink: #ffffff;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --sans: "IBM Plex Sans", ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bench-bg: #16181b;
+      --bench-panel: #1e2125;
+      --bench-border: #2d3136;
+      --bench-ink: #e8eaec;
+      --bench-muted: #8a9198;
+      --bench-accent: #7fa8c9;
+      --bench-accent-ink: #0f1113;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bench-bg: #16181b;
+    --bench-panel: #1e2125;
+    --bench-border: #2d3136;
+    --bench-ink: #e8eaec;
+    --bench-muted: #8a9198;
+    --bench-accent: #7fa8c9;
+    --bench-accent-ink: #0f1113;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bench-bg);
+    color: var(--bench-ink);
+    font-family: var(--sans);
+    font-size: 14px;
+  }
+
+  .app {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ---------- sidebar ---------- */
+
+  .sidebar {
+    background: var(--bench-panel);
+    border-right: 1px solid var(--bench-border);
+    padding: 22px 20px 90px;
+    overflow-y: auto;
+  }
+
+  .sidebar h1 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 2px;
+  }
+
+  .sidebar .sub {
+    font-size: 12px;
+    color: var(--bench-muted);
+    margin: 0 0 20px;
+    line-height: 1.5;
+  }
+
+  .theme-switch {
+    display: flex;
+    background: var(--bench-bg);
+    border: 1px solid var(--bench-border);
+    border-radius: 7px;
+    padding: 3px;
+    margin-bottom: 22px;
+  }
+
+  .theme-switch button {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--bench-muted);
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 7px 0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .theme-switch button.active {
+    background: var(--bench-accent);
+    color: var(--bench-accent-ink);
+  }
+
+  .group {
+    margin-bottom: 22px;
+  }
+
+  .group-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bench-muted);
+    margin-bottom: 10px;
+  }
+
+  .token-row {
+    display: grid;
+    grid-template-columns: 34px 1fr 78px;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+  }
+
+  .token-row + .token-row { border-top: 1px solid var(--bench-border); }
+
+  .swatch-input {
+    width: 34px;
+    height: 34px;
+    border-radius: 7px;
+    border: 1px solid var(--bench-border);
+    padding: 0;
+    cursor: pointer;
+    background: none;
+  }
+  .swatch-input::-webkit-color-swatch-wrapper { padding: 2px; }
+  .swatch-input::-webkit-color-swatch { border-radius: 5px; border: none; }
+
+  .token-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--bench-ink);
+  }
+
+  .token-var {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--bench-muted);
+    margin-top: 1px;
+  }
+
+  .hex-input {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--bench-ink);
+    background: var(--bench-bg);
+    border: 1px solid var(--bench-border);
+    border-radius: 5px;
+    padding: 6px 7px;
+    width: 100%;
+    text-transform: lowercase;
+  }
+  .hex-input:focus {
+    outline: none;
+    border-color: var(--bench-accent);
+  }
+
+  .reset-btn {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    background: transparent;
+    border: 1px solid var(--bench-border);
+    color: var(--bench-muted);
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 9px 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .reset-btn:hover { border-color: var(--bench-accent); color: var(--bench-accent); }
+
+  /* ---------- main / live mockup ---------- */
+
+  main {
+    position: relative;
+    overflow-y: auto;
+  }
+
+  .mockup {
+    --m-ice: #e3e7ec;
+    --m-frost: #f2f4f6;
+    --m-ink: #1b2430;
+    --m-slate: #5b6b7c;
+    --m-granite: #8b3a35;
+    --m-granite-strong: #6f2d29;
+    --m-line: #d7e0e8;
+    --m-note-bg: #fbf3e7;
+    --m-note-line: #e6cfa8;
+    --m-note-ink: #6b4d1f;
+
+    background: var(--m-ice);
+    min-height: 100%;
+    font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    transition: background 0.15s ease;
+  }
+
+  .mockup h1, .mockup h2, .mockup h3 {
+    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 600;
+    text-wrap: balance;
+    color: var(--m-ink);
+    margin: 0;
+  }
+
+  .mockup a { color: var(--m-granite); }
+
+  .m-wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+
+  .m-nav {
+    border-bottom: 1px solid var(--m-line);
+    padding: 16px 0;
+  }
+  .m-nav .m-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .m-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: ui-serif, Georgia, serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--m-ink);
+  }
+  .m-stone { width: 9px; height: 9px; border-radius: 50%; background: var(--m-granite); }
+  .m-links { display: flex; gap: 18px; }
+  .m-links a {
+    color: var(--m-slate);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .m-hero { padding: 56px 0 44px; }
+  .m-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--m-granite);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .m-hero h2 { font-size: 34px; line-height: 1.15; max-width: 16ch; }
+  .m-hero p.m-lede {
+    margin-top: 14px;
+    font-size: 15.5px;
+    color: var(--m-slate);
+    max-width: 50ch;
+    line-height: 1.6;
+  }
+  .m-hero .m-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .m-cards {
+    padding: 36px 0;
+    border-top: 1px solid var(--m-line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .m-card {
+    background: var(--m-frost);
+    border: 1px solid var(--m-line);
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .m-card h3 { font-size: 15px; color: var(--m-granite-strong); margin-bottom: 6px; }
+  .m-card p { margin: 0; font-size: 13.5px; color: var(--m-ink); line-height: 1.55; }
+
+  .m-note-wrap { padding: 0 0 36px; }
+  .m-note {
+    background: var(--m-note-bg);
+    border: 1px solid var(--m-note-line);
+    border-radius: 6px;
+    padding: 14px 18px;
+    color: var(--m-note-ink);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .m-note strong {
+    display: block;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .m-footer {
+    border-top: 1px solid var(--m-line);
+    padding: 20px 0 40px;
+    color: var(--m-slate);
+    font-size: 12px;
+  }
+
+  /* ---------- export bar ---------- */
+
+  .export-bar {
+    position: sticky;
+    bottom: 0;
+    background: var(--bench-panel);
+    border-top: 1px solid var(--bench-border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .export-bar .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--bench-muted);
+    white-space: nowrap;
+  }
+  .export-code {
+    flex: 1;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--bench-ink);
+    background: var(--bench-bg);
+    border: 1px solid var(--bench-border);
+    border-radius: 6px;
+    padding: 8px 10px;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .copy-btn {
+    background: var(--bench-accent);
+    color: var(--bench-accent-ink);
+    border: none;
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .copy-btn:active { opacity: 0.8; }
+
+  @media (max-width: 860px) {
+    .app { grid-template-columns: 1fr; }
+    .sidebar { border-right: none; border-bottom: 1px solid var(--bench-border); }
+    .m-cards { grid-template-columns: 1fr; }
+    .export-bar { flex-direction: column; align-items: stretch; }
+  }
+</style>
+
+<div class="app">
+  <aside class="sidebar">
+    <h1>Ice &amp; Granite</h1>
+    <p class="sub">Live tuner for the site's color tokens. Drag a swatch or type a hex — the mockup on the right updates immediately.</p>
+
+    <div class="theme-switch">
+      <button id="btn-light" class="active">Light</button>
+      <button id="btn-dark">Dark</button>
+    </div>
+
+    <div class="group">
+      <div class="group-label">Background</div>
+      <div class="token-row">
+        <input type="color" class="swatch-input" id="swatch-ice">
+        <div>
+          <div class="token-name">Page</div>
+          <span class="token-var">--ice</span>
+        </div>
+        <input type="text" class="hex-input" id="hex-ice">
+      </div>
+      <div class="token-row">
+        <input type="color" class="swatch-input" id="swatch-frost">
+        <div>
+          <div class="token-name">Cards</div>
+          <span class="token-var">--frost</span>
+        </div>
+        <input type="text" class="hex-input" id="hex-frost">
+      </div>
+      <div class="token-row">
+        <input type="color" class="swatch-input" id="swatch-line">
+        <div>
+          <div class="token-name">Borders</div>
+          <span class="token-var">--line</span>
+        </div>
+        <input type="text" class="hex-input" id="hex-line">
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-label">Text &amp; accent</div>
+      <div class="token-row">
+        <input type="color" class="swatch-input" id="swatch-ink">
+        <div>
+          <div class="token-name">Body text</div>
+          <span class="token-var">--ink</span>
+        </div>
+        <input type="text" class="hex-input" id="hex-ink">
+      </div>
+      <div class="token-row">
+        <input type="color" class="swatch-input" id="swatch-slate">
+        <div>
+          <div class="token-name">Nav / secondary text</div>
+          <span class="token-var">--slate</span>
+        </div>
+        <input type="text" class="hex-input" id="hex-slate">
+      </div>
+      <div class="token-row">
+        <input type="color" class="swatch-input" id="swatch-granite">
+        <div>
+          <div class="token-name">Links / accent</div>
+          <span class="token-var">--granite</span>
+        </div>
+        <input type="text" class="hex-input" id="hex-granite">
+      </div>
+      <div class="token-row">
+        <input type="color" class="swatch-input" id="swatch-granite-strong">
+        <div>
+          <div class="token-name">Accent hover</div>
+          <span class="token-var">--granite-strong</span>
+        </div>
+        <input type="text" class="hex-input" id="hex-granite-strong">
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-label">Draft note</div>
+      <div class="token-row">
+        <input type="color" class="swatch-input" id="swatch-note-ink">
+        <div>
+          <div class="token-name">Amber text</div>
+          <span class="token-var">--note-ink</span>
+        </div>
+        <input type="text" class="hex-input" id="hex-note-ink">
+      </div>
+    </div>
+
+    <button class="reset-btn" id="reset-btn">Reset to current site values</button>
+  </aside>
+
+  <main>
+    <div class="mockup" id="mockup">
+      <header class="m-nav">
+        <div class="m-wrap">
+          <div class="m-wordmark"><span class="m-stone"></span>CurlingOne</div>
+          <nav class="m-links">
+            <a href="#">How to Play</a>
+            <a href="#">Features</a>
+            <a href="#">FAQ</a>
+          </nav>
+        </div>
+      </header>
+
+      <section class="m-hero">
+        <div class="m-wrap">
+          <div class="m-eyebrow"><span class="m-stone"></span>Now with multiplayer</div>
+          <h2>Real curling, thrown by hand, in VR.</h2>
+          <p class="m-lede">CurlingOne brings a full sheet of ice to Meta Quest — physical stone delivery, real sweeping, and real rules.</p>
+          <a class="m-link" href="#">Get CurlingOne on Quest &rarr;</a>
+        </div>
+      </section>
+
+      <section class="m-cards-wrap">
+        <div class="m-wrap m-cards">
+          <div class="m-card">
+            <h3>Full-motion delivery</h3>
+            <p>Grab the stone, set your line and weight, and physically slide it down the ice.</p>
+          </div>
+          <div class="m-card">
+            <h3>Sweeping that matters</h3>
+            <p>Sweep in front of a moving stone to change how far it travels.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="m-note-wrap">
+        <div class="m-wrap">
+          <div class="m-note">
+            <strong>Draft — not yet live</strong>
+            Building on the multiplayer-launch branch. Delete this box once it's ready to merge to main.
+          </div>
+        </div>
+      </section>
+
+      <footer class="m-footer">
+        <div class="m-wrap">&copy; Hackin' Shack — CurlingOne</div>
+      </footer>
+    </div>
+
+    <div class="export-bar">
+      <span class="label">CSS</span>
+      <code class="export-code" id="export-code"></code>
+      <button class="copy-btn" id="copy-btn">Copy</button>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var DEFAULTS = {
+    light: {
+      ice: '#e3e7ec', frost: '#f2f4f6', ink: '#1b2430', slate: '#5b6b7c',
+      granite: '#8b3a35', 'granite-strong': '#6f2d29',
+      line: '#d7e0e8', 'note-ink': '#6b4d1f'
+    },
+    dark: {
+      ice: '#121821', frost: '#1a222c', ink: '#e8edf2', slate: '#93a4b5',
+      granite: '#d18c86', 'granite-strong': '#e3a9a3',
+      line: '#2b3743', 'note-ink': '#e0c48a'
+    }
+  };
+  var TOKENS = ['ice', 'frost', 'line', 'ink', 'slate', 'granite', 'granite-strong', 'note-ink'];
+
+  var state = { light: {}, dark: {} };
+  var theme = 'light';
+
+  function loadStored() {
+    try {
+      var raw = localStorage.getItem('ice-granite-tuner');
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return null;
+  }
+
+  function saveStored() {
+    try {
+      localStorage.setItem('ice-granite-tuner', JSON.stringify(state));
+    } catch (e) {}
+  }
+
+  var stored = loadStored();
+  ['light', 'dark'].forEach(function (t) {
+    TOKENS.forEach(function (k) {
+      state[t][k] = (stored && stored[t] && stored[t][k]) || DEFAULTS[t][k];
+    });
+  });
+
+  var mockup = document.getElementById('mockup');
+
+  function applyToMockup() {
+    var s = state[theme];
+    TOKENS.forEach(function (k) {
+      mockup.style.setProperty('--m-' + k, s[k]);
+    });
+    // derive note-bg/note-line tints so the draft-note box stays coherent
+    mockup.style.setProperty('--m-note-bg', theme === 'dark' ? '#2a2313' : '#fbf3e7');
+    mockup.style.setProperty('--m-note-line', theme === 'dark' ? '#4d3f1e' : '#e6cfa8');
+  }
+
+  function applyToControls() {
+    var s = state[theme];
+    TOKENS.forEach(function (k) {
+      document.getElementById('swatch-' + k).value = s[k];
+      document.getElementById('hex-' + k).value = s[k];
+    });
+  }
+
+  function isValidHex(v) {
+    return /^#[0-9a-fA-F]{6}$/.test(v);
+  }
+
+  function updateExport() {
+    function block(label, s) {
+      return '  ' + label + ' {\n' +
+        TOKENS.map(function (k) { return '    --' + k + ': ' + s[k] + ';'; }).join('\n') +
+        '\n  }';
+    }
+    var code =
+      ':root' + ' {\n' +
+      TOKENS.map(function (k) { return '  --' + k + ': ' + state.light[k] + ';'; }).join('\n') +
+      '\n}\n\n' +
+      '@media (prefers-color-scheme: dark) {\n' +
+      '  :root:not([data-theme="light"]) {\n' +
+      TOKENS.map(function (k) { return '    --' + k + ': ' + state.dark[k] + ';'; }).join('\n') +
+      '\n  }\n}\n\n' +
+      ':root[data-theme="dark"] {\n' +
+      TOKENS.map(function (k) { return '  --' + k + ': ' + state.dark[k] + ';'; }).join('\n') +
+      '\n}';
+    document.getElementById('export-code').textContent = code;
+  }
+
+  function refresh() {
+    applyToMockup();
+    applyToControls();
+    updateExport();
+    saveStored();
+  }
+
+  TOKENS.forEach(function (k) {
+    var swatch = document.getElementById('swatch-' + k);
+    var hex = document.getElementById('hex-' + k);
+
+    swatch.addEventListener('input', function () {
+      state[theme][k] = swatch.value;
+      refresh();
+    });
+
+    hex.addEventListener('change', function () {
+      var v = hex.value.trim();
+      if (!v.startsWith('#')) v = '#' + v;
+      if (isValidHex(v)) {
+        state[theme][k] = v;
+        refresh();
+      } else {
+        hex.value = state[theme][k];
+      }
+    });
+  });
+
+  document.getElementById('btn-light').addEventListener('click', function () {
+    theme = 'light';
+    document.getElementById('btn-light').classList.add('active');
+    document.getElementById('btn-dark').classList.remove('active');
+    refresh();
+  });
+  document.getElementById('btn-dark').addEventListener('click', function () {
+    theme = 'dark';
+    document.getElementById('btn-dark').classList.add('active');
+    document.getElementById('btn-light').classList.remove('active');
+    refresh();
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', function () {
+    TOKENS.forEach(function (k) {
+      state.light[k] = DEFAULTS.light[k];
+      state.dark[k] = DEFAULTS.dark[k];
+    });
+    refresh();
+  });
+
+  document.getElementById('copy-btn').addEventListener('click', function () {
+    var text = document.getElementById('export-code').textContent;
+    var btn = document.getElementById('copy-btn');
+    function flash(label) {
+      var prev = btn.textContent;
+      btn.textContent = label;
+      setTimeout(function () { btn.textContent = prev; }, 1200);
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        flash('Copied');
+      }).catch(function () {
+        flash('Select & copy');
+      });
+    } catch (e) {
+      flash('Select & copy');
+    }
+  });
+
+  refresh();
+})();
+</script>
