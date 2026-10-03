@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width, viewport-fit=cover">
-<link rel="icon" href="/docs/images/iconCurlingOne.png">
-<title>CurlingOne — VR Curling for Meta Quest</title>
-<meta name="description" content="A multiplayer virtual reality curling game for Meta Quest. Play Standard or Doubles, solo against AI or with friends in a private room. Net proceeds support a nonprofit.">
+<link rel="icon" href="/docs/images/logo_square.png">
+<title>Hackin' Shack</title>
+<meta name="description" content="Hackin' Shack is a small studio building playful things — starting with CurlingOne, a multiplayer VR curling game for Meta Quest, and CurlingSpectator, its PC companion app.">
 <style>
   :root {
     --ice: #f4f7fa;
@@ -158,11 +158,12 @@
   /* ---------- hero ---------- */
 
   section.hero {
-    padding: 72px 0 56px;
+    padding: 64px 0 24px;
+    text-align: center;
   }
 
   .eyebrow {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 10px;
     font-size: 12px;
@@ -184,44 +185,38 @@
   h1.title {
     font-size: 46px;
     line-height: 1.1;
-    max-width: 18ch;
+    max-width: 20ch;
+    margin: 0 auto;
   }
 
   .lede {
-    margin-top: 20px;
+    margin: 20px auto 0;
     font-size: 18px;
     color: var(--slate);
-    max-width: 56ch;
+    max-width: 52ch;
   }
 
-  .cta-row {
-    margin-top: 32px;
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
+  /* ---------- hero animation ---------- */
+
+  .hero-visual {
+    width: min(480px, 86vw);
+    margin: 44px auto 0;
   }
 
-  .btn {
-    display: inline-block;
-    padding: 13px 24px;
-    border-radius: 6px;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .btn-primary {
-    background: var(--granite);
-    color: #fff;
-  }
-  .btn-primary:hover { background: var(--granite-strong); color: #fff; }
-
-  .btn-secondary {
-    background: var(--frost);
-    color: var(--ink);
+  #hero-animation {
+    width: 100%;
+    aspect-ratio: 1 / 1;
     border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #000;
+    overflow: hidden;
   }
-  .btn-secondary:hover { border-color: var(--granite); color: var(--granite); }
+
+  .hero-visual p {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: var(--slate-quiet);
+  }
 
   /* ---------- generic section ---------- */
 
@@ -232,7 +227,8 @@
 
   .block-head {
     max-width: 62ch;
-    margin-bottom: 28px;
+    margin: 0 auto 28px;
+    text-align: center;
   }
 
   .block-head h2 {
@@ -246,65 +242,45 @@
     margin: 0;
   }
 
-  /* ---------- feature grid ---------- */
+  /* ---------- project cards ---------- */
 
-  .feature-grid {
+  .project-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
-  .feature-card {
-    padding: 20px 22px;
+  .project-card {
+    display: block;
+    padding: 26px 26px 24px;
     background: var(--frost);
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 10px;
+    text-decoration: none;
   }
 
-  .feature-card h3 {
-    font-size: 16px;
+  .project-card:hover { border-color: var(--granite); }
+
+  .project-card .eyebrow { margin-bottom: 14px; }
+
+  .project-card h3 {
+    font-size: 20px;
+    color: var(--ink);
     margin: 0 0 8px;
-    color: var(--granite-strong);
   }
 
-  .feature-card p {
+  .project-card p {
     margin: 0;
     font-size: 14.5px;
-    color: var(--ink);
+    color: var(--slate);
   }
 
-  /* ---------- two-column blocks ---------- */
-
-  .split {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    align-items: center;
-  }
-
-  .split p { color: var(--ink); font-size: 15.5px; margin: 12px 0; }
-  .split ul { margin: 12px 0; padding-left: 20px; }
-  .split li { margin: 6px 0; font-size: 15.5px; color: var(--ink); }
-  .split li::marker { color: var(--slate-quiet); }
-
-  .side-card {
-    padding: 22px 24px;
-    background: var(--frost);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-  }
-
-  /* ---------- studio section w/ animation ---------- */
-
-  section.studio .split { grid-template-columns: 1fr 260px; }
-
-  #sign-widget {
-    width: 220px;
-    margin: 0 auto;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: #000;
-    overflow: hidden;
+  .project-card .goto {
+    display: block;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--granite);
   }
 
   /* ---------- footer ---------- */
@@ -337,10 +313,7 @@
 
   @media (max-width: 760px) {
     h1.title { font-size: 34px; }
-    .feature-grid { grid-template-columns: 1fr; }
-    .split { grid-template-columns: 1fr; }
-    section.studio .split { grid-template-columns: 1fr; }
-    #sign-widget { width: 180px; }
+    .project-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -348,13 +321,10 @@
 
   <header class="site-nav">
     <div class="wrap">
-      <a class="wordmark" href="/"><span class="stone"></span>CurlingOne</a>
+      <a class="wordmark" href="/"><span class="stone"></span>Hackin' Shack</a>
       <nav class="links">
-        <a href="/docs/how-to-play/">How to Play</a>
-        <a href="/docs/features/">Features</a>
-        <a href="/docs/faq/">FAQ</a>
-        <a href="/docs/nonprofit/">Nonprofit</a>
-        <a href="/docs/support/">Support</a>
+        <a href="/docs/curling/">CurlingOne</a>
+        <a href="/docs/curlingspectator/">CurlingSpectator</a>
       </nav>
     </div>
   </header>
@@ -362,18 +332,19 @@
   <div class="wrap">
     <div class="draft-note">
       <strong>Draft — not yet live</strong>
-      Building on the <code>multiplayer-launch</code> branch. Fill in <code>[Quest Store link]</code> before merging to <code>main</code>. Delete this box once it's ready.
+      Building on the <code>multiplayer-launch</code> branch. This replaces the current hackinshack.org homepage. Delete this box once it's ready to merge to <code>main</code>.
     </div>
   </div>
 
   <section class="hero">
     <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Now with multiplayer</div>
-      <h1 class="title">Real curling, thrown by hand, in VR.</h1>
-      <p class="lede">CurlingOne brings a full sheet of ice to Meta Quest — physical stone delivery, real sweeping, and real rules. Play solo against AI, or invite friends into a private match with voice chat.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="[Quest Store link]">Get CurlingOne on Quest</a>
-        <a class="btn btn-secondary" href="/docs/how-to-play/">See How to Play</a>
+      <div class="eyebrow"><span class="stone"></span>Hackin' Shack</div>
+      <h1 class="title">We build playful things, from scratch.</h1>
+      <p class="lede">A small studio putting the sign up as we go. Right now that means CurlingOne, a multiplayer VR curling game for Meta Quest, and CurlingSpectator, its companion app for watching along on PC.</p>
+
+      <div class="hero-visual">
+        <div id="hero-animation"></div>
+        <p>Pulling the sign up, one hack at a time.</p>
       </div>
     </div>
   </section>
@@ -381,78 +352,32 @@
   <section class="block">
     <div class="wrap">
       <div class="block-head">
-        <h2>Built for the sport, not just the idea of it</h2>
-        <p>Delivery, sweeping, and scoring all work the way they do on real ice.</p>
+        <h2>What we're building</h2>
+        <p>Two pieces of the same project — play it in VR, or watch along from a PC.</p>
       </div>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h3>Full-motion delivery</h3>
-          <p>Grab the stone, set your line and weight, and physically slide it down the ice — curl comes from how you release, not a canned animation.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Sweeping that matters</h3>
-          <p>Sweep in front of a moving stone to change how far it travels. How you sweep actually affects the shot.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Real rules, enforced</h3>
-          <p>Hammer, house, ends, and scoring work as they should, including the 5-rock, no-tick, and Doubles power-play rules.</p>
-        </div>
+      <div class="project-grid">
+        <a class="project-card" href="/docs/curling/">
+          <div class="eyebrow"><span class="stone"></span>Meta Quest</div>
+          <h3>CurlingOne</h3>
+          <p>A multiplayer virtual reality curling game — real stone delivery, real sweeping, real rules. Solo against AI, or with friends in a private room.</p>
+          <span class="goto">See CurlingOne &rarr;</span>
+        </a>
+        <a class="project-card" href="/docs/curlingspectator/">
+          <div class="eyebrow"><span class="stone"></span>PC companion</div>
+          <h3>CurlingSpectator</h3>
+          <p>Watch a live CurlingOne match from your PC, no headset required — join the room and follow along from the sheet.</p>
+          <span class="goto">See CurlingSpectator &rarr;</span>
+        </a>
       </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap split">
-      <div>
-        <h2>Play your way</h2>
-        <p>Play the classic 4-versus-4 <strong>Standard</strong> game, or the faster 2-versus-2 <strong>Doubles</strong> format. Short a player? Any open slot on either team can be handed to the AI, so you're never stuck waiting on a full roster.</p>
-        <ul>
-          <li><strong>Single Player</strong> — take on a full AI team, from Very Low to Very High skill.</li>
-          <li><strong>Multiplayer</strong> — private rooms only, so you're only ever matched with people you've invited.</li>
-        </ul>
-        <p><a href="/docs/features/">See all features &rarr;</a></p>
-      </div>
-      <div class="side-card">
-        <h3 style="margin:0 0 10px;font-size:16px;color:var(--granite-strong);">No public matchmaking</h3>
-        <p style="margin:0;font-size:14.5px;color:var(--ink);">Agree on a room name with the people you want to play with, then create or join it together. There's no lobby of strangers — just spatial voice chat with the people you invited.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap split">
-      <div class="side-card">
-        <h3 style="margin:0 0 10px;font-size:16px;color:var(--granite-strong);">Where the money goes</h3>
-        <p style="margin:0;font-size:14.5px;color:var(--ink);">Net proceeds from CurlingOne support <strong>[Nonprofit Name]</strong>.</p>
-      </div>
-      <div>
-        <h2>More than a game</h2>
-        <p>We built CurlingOne to introduce people to curling with as low a barrier as possible — no experience required, real rules taught step by step. Net proceeds go toward a nonprofit cause, so playing does a little good beyond the game itself.</p>
-        <p><a href="/docs/nonprofit/">Read more about the mission &rarr;</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block studio">
-    <div class="wrap split">
-      <div>
-        <h2>Made by Hackin' Shack</h2>
-        <p>CurlingOne is built by Hackin' Shack, a small team putting the sign up as we go. Thanks for stopping by.</p>
-      </div>
-      <div id="sign-widget"></div>
     </div>
   </section>
 
   <footer class="site-footer">
     <div class="wrap">
-      <div>&copy; Hackin' Shack — CurlingOne</div>
+      <div>&copy; Hackin' Shack</div>
       <nav>
-        <a href="/docs/how-to-play/">How to Play</a>
-        <a href="/docs/features/">Features</a>
-        <a href="/docs/faq/">FAQ</a>
-        <a href="/docs/nonprofit/">Nonprofit</a>
-        <a href="/docs/support/">Support</a>
-        <a href="/docs/privacy/">Privacy</a>
+        <a href="/docs/curling/">CurlingOne</a>
+        <a href="/docs/curlingspectator/">CurlingSpectator</a>
       </nav>
     </div>
   </footer>
@@ -470,6 +395,6 @@
     }
   </script>
   <script src="/docs/js_functions/animation_classes.js?v=2"></script>
-  <script src="/docs/js_functions/sign_animation.js?v=2"></script>
+  <script src="/docs/js_functions/home_hero_animation.js?v=1"></script>
 </body>
 </html>
