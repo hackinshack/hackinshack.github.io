@@ -160,6 +160,19 @@
     max-width: 52ch;
   }
 
+  .section-photo {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+
+  .hero-video {
+    margin-top: 36px;
+  }
+
   /* ---------- generic section ---------- */
 
   section.block {
@@ -186,10 +199,35 @@
 
   /* ---------- video placeholders ---------- */
 
-  .video-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  .video-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .video-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .video-caption {
+    text-align: center;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--slate);
+  }
+
+  .more-videos {
+    text-align: center;
+    margin: 32px 0 0;
+    font-size: 14.5px;
+    font-weight: 600;
   }
 
   .video-slot {
@@ -203,6 +241,32 @@
     justify-content: center;
     gap: 10px;
     color: var(--slate);
+  }
+
+  /* ---------- youtube embed (swaps in for a .video-slot once a video exists) ---------- */
+
+  .video-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  .video-embed.portrait {
+    width: auto;
+    max-width: 100%;
+    aspect-ratio: 9 / 16;
+    height: min(70vh, 560px);
+  }
+
+  .video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 
   .video-slot .play-glyph {
@@ -223,12 +287,6 @@
     border-bottom: 7px solid transparent;
     border-left: 11px solid var(--slate);
     margin-left: 3px;
-  }
-
-  .video-slot .caption {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--slate);
   }
 
   .video-slot .status {
@@ -295,7 +353,7 @@
 
   @media (max-width: 760px) {
     h1.title { font-size: 34px; }
-    .video-grid, .note-grid, .note-grid-3 { grid-template-columns: 1fr; }
+    .note-grid, .note-grid-3 { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -314,9 +372,18 @@
 
   <section class="hero">
     <div class="wrap">
-      <div class="eyebrow"><span class="stone"></span>Hands-on &amp; mobile</div>
+      <div class="eyebrow"><span class="stone"></span>No ice? No problem!</div>
       <h1 class="title">Curling Simulator</h1>
-      <p class="lede">A roughly 24-foot sliding track where you deliver a real stone by hand, just like on the ice. Its path is tracked and projected on a screen in front of you — the same idea as a golf simulator, built for curling. We've already brought it to local fairs, and we're outfitting a trailer next so it can travel to schools, parties, and bonspiels.</p>
+      <p class="lede">It started in the basement, and ended up at the USA Curling National Championships. See how it evolved along the way.</p>
+      <div class="video-item hero-video">
+        <div class="video-embed portrait">
+          <iframe src="https://www.youtube-nocookie.com/embed/pzeqVgc-8wM"
+            title="To the big time"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+        <div class="video-caption">Many thanks to John Shuster for giving it a go!</div>
+      </div>
     </div>
   </section>
 
@@ -324,20 +391,29 @@
     <div class="wrap">
       <div class="block-head">
         <h2>See it in action</h2>
-        <p>Video from the simulator is on its way — these are reserved spots for the first clips.</p>
       </div>
-      <div class="video-grid">
-        <div class="video-slot">
-          <div class="play-glyph"></div>
-          <div class="caption">Delivering a stone</div>
-          <div class="status">Video coming soon</div>
+      <img class="section-photo" src="/docs/images/simulator-still.jpg" alt="The curling simulator in action">
+      <div class="video-list">
+        <div class="video-item">
+          <div class="video-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/edsRu_tK93Y"
+              title="From the basement"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video-caption">An early basement version.</div>
         </div>
-        <div class="video-slot">
-          <div class="play-glyph"></div>
-          <div class="caption">Stone tracking on screen</div>
-          <div class="status">Video coming soon</div>
+        <div class="video-item">
+          <div class="video-embed portrait">
+            <iframe src="https://www.youtube-nocookie.com/embed/t0wyq14UPR8"
+              title="To the Squeeze"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video-caption">Lenox Apple Squeeze 2022.</div>
         </div>
       </div>
+      <p class="more-videos"><a href="https://www.youtube.com/@hackinshack2026" target="_blank" rel="noopener">See more videos on our YouTube channel &rarr;</a></p>
     </div>
   </section>
 
@@ -346,15 +422,15 @@
       <div class="note-grid note-grid-3">
         <div class="note-card">
           <h3>What it is</h3>
-          <p>A roughly 24-foot sliding track that lets you deliver a real curling stone by hand. As it travels, the stone's path is tracked and projected on a screen — similar to how a golf simulator shows your shot, but for curling.</p>
+          <p>It's been through many iterations and has many versions, but basically it's a fun way to introduce the sport of curling, let people try a delivery and see how it feels to curl without needing ice.</p>
         </div>
         <div class="note-card">
           <h3>Where it's been</h3>
-          <p>We've already brought the simulator out to local fairs, letting people try a delivery and see how it feels without needing ice.</p>
+          <p>We've had a few beers and laughs with it in the basement, taken it to local fairs, and a national championship. It's definitely a conversation starter, to say the least.</p>
         </div>
         <div class="note-card">
           <h3>Where it's headed</h3>
-          <p>We're outfitting a trailer so it can travel to schools, parties, and bonspiels — pairing the hands-on experience with some of the physics (momentum, friction, spin) behind what's happening on the ice.</p>
+          <p>Maybe somewhere near you, so keep your eyes peeled!</p>
         </div>
       </div>
     </div>
